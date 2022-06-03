@@ -3,6 +3,7 @@
 	<name>lib</name>
 	<comment>Project cine_utp-lib created by Buildship.</comment>
 	<projects>
+		<project>cine_utp_jpa</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
