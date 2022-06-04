@@ -20,18 +20,24 @@ public class Entrada implements Serializable {
 
 	private String asiento;
 
-	@Column(name="cod_cajero")
-	private Integer codCajero;
-
-	@Column(name="cod_cliente")
-	private Integer codCliente;
-
-	@Column(name="cod_funcion")
-	private Integer codFuncion;
-
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_compra")
 	private Date fechaCompra;
+
+	//bi-directional many-to-one association to Cliente
+	@ManyToOne
+	@JoinColumn(name="cod_cliente")
+	private Cliente cliente;
+
+	//bi-directional many-to-one association to Empleado
+	@ManyToOne
+	@JoinColumn(name="cod_cajero")
+	private Empleado empleado;
+
+	//bi-directional many-to-one association to Funcion
+	@ManyToOne
+	@JoinColumn(name="cod_funcion")
+	private Funcion funcion;
 
 	public Entrada() {
 	}
@@ -52,36 +58,36 @@ public class Entrada implements Serializable {
 		this.asiento = asiento;
 	}
 
-	public Integer getCodCajero() {
-		return this.codCajero;
-	}
-
-	public void setCodCajero(Integer codCajero) {
-		this.codCajero = codCajero;
-	}
-
-	public Integer getCodCliente() {
-		return this.codCliente;
-	}
-
-	public void setCodCliente(Integer codCliente) {
-		this.codCliente = codCliente;
-	}
-
-	public Integer getCodFuncion() {
-		return this.codFuncion;
-	}
-
-	public void setCodFuncion(Integer codFuncion) {
-		this.codFuncion = codFuncion;
-	}
-
 	public Date getFechaCompra() {
 		return this.fechaCompra;
 	}
 
 	public void setFechaCompra(Date fechaCompra) {
 		this.fechaCompra = fechaCompra;
+	}
+
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Empleado getEmpleado() {
+		return this.empleado;
+	}
+
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
+
+	public Funcion getFuncion() {
+		return this.funcion;
+	}
+
+	public void setFuncion(Funcion funcion) {
+		this.funcion = funcion;
 	}
 
 }

@@ -7,6 +7,7 @@ public class cliente {
 	private String apeClie;
 	private String correo;
 	private String direccion;
+	private String dni;
 	
 	public int getIdClie() {
 		return idClie;
@@ -38,6 +39,11 @@ public class cliente {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 	
-
 }
