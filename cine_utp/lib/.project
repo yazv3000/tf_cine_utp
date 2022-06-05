@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>lib</name>
+	<name>cine_utp-lib</name>
 	<comment>Project cine_utp-lib created by Buildship.</comment>
 	<projects>
+		<project>cine_utp_jpa</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,8 +58,20 @@
 				}
 				%>
     </tbody>
+    
+    
 </table>
 </div>
+
+<table>
+<c:forEach items="${lst}" var="l">
+	<tr>
+		<td><c:out value="${l.getNom_peli()}"></c:out></td>
+	</tr>
+</c:forEach>
+	
+</table>
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     

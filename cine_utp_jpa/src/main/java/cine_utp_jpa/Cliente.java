@@ -9,12 +9,17 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="")
-@NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
+@Table(name="cliente")
+@NamedQueries({ 
+@NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c"),
+@NamedQuery(name="Cliente.consultarNombreDni", query="SELECT c FROM Cliente c where upper(concat(c.nomCl,' ',c.apeCl)) like :cadena or c.dniCl like :cadena")
+})
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(generator="seq_clientes") 
+	@SequenceGenerator(name="seq_clientes",sequenceName="seq_clientes", allocationSize=1)
 	@Column(name="cod_cliente")
 	private Integer codCliente;
 

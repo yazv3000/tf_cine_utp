@@ -9,7 +9,10 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Pelicula.findAll", query="SELECT p FROM Pelicula p")
+@NamedQueries({
+	@NamedQuery(name="Pelicula.consultarPorNombre", query="SELECT e FROM Pelicula e WHERE e.nomPeli like :cadena "),
+	@NamedQuery(name="Pelicula.findAll", query="SELECT p FROM Pelicula p")
+})
 public class Pelicula implements Serializable {
 	private static final long serialVersionUID = 1L;
 

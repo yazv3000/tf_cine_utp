@@ -16,6 +16,8 @@ public class Entrada implements Serializable {
 
 	@Id
 	@Column(name="cod_ticket")
+	@GeneratedValue(generator="seq_tickets") 
+	@SequenceGenerator(name="seq_tickets",sequenceName="seq_tickets", allocationSize=1)
 	private Integer codTicket;
 
 	private String asiento;

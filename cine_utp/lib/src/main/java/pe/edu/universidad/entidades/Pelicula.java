@@ -1,5 +1,7 @@
 package pe.edu.universidad.entidades;
 
+import pe.edu.universidad.dto.DtoPeli;
+
 public class Pelicula {
 	
 	// ATRIBUTOS
@@ -24,7 +26,7 @@ public class Pelicula {
 		this.duracion = duracion;
 		this.poster = poster;
 	}
-	
+		
 	// GETTERs & SETTERs
 	public int getCod_pelicula() {		return cod_pelicula;	}
 	public void setCod_pelicula(int cod_pelicula) {		this.cod_pelicula = cod_pelicula;	}
@@ -46,5 +48,5 @@ public class Pelicula {
 	
 	public byte[] getPoster() {	return poster;}
 	public void setPoster(byte[] poster) {	this.poster = poster;}
-	
+
 }

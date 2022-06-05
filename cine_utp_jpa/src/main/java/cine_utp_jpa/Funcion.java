@@ -3,6 +3,7 @@ package cine_utp_jpa;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Time;
+import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -11,16 +12,25 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Funcion.findAll", query="SELECT f FROM Funcion f")
+@Table(name="funcion")
+@NamedQueries({ 
+@NamedQuery(name="Funcion.findAll", query="SELECT f FROM Funcion f"),
+@NamedQuery(name="Funcion.consultarCodigo", query="SELECT f FROM Funcion f where f.codFuncion = :number")
+})
+
 public class Funcion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(generator="seq_funciones") 
+	@SequenceGenerator(name="seq_funciones",sequenceName="seq_funciones", allocationSize=1)
 	@Column(name="cod_funcion")
 	private Integer codFuncion;
 
-	@Column(name="cod_pelicula")
-	private Integer codPelicula;
+	//bi-directional many-to-one association to Pelicula
+	@ManyToOne
+	@JoinColumn(name="cod_pelicula")
+	private Pelicula pelicula;
 
 	@Column(name="cod_sala")
 	private Integer codSala;
@@ -31,6 +41,10 @@ public class Funcion implements Serializable {
 
 	@Column(name="hora_inicio")
 	private Time horaInicio;
+
+	@Column(name="precio")
+	private BigDecimal precio;
+
 
 	public Funcion() {
 	}
@@ -43,13 +57,14 @@ public class Funcion implements Serializable {
 		this.codFuncion = codFuncion;
 	}
 
-	public Integer getCodPelicula() {
-		return this.codPelicula;
+	public Pelicula getPelicula() {
+		return this.pelicula;
 	}
 
-	public void setCodPelicula(Integer codPelicula) {
-		this.codPelicula = codPelicula;
+	public void setPelicula(Pelicula pelicula) {
+		this.pelicula = pelicula;
 	}
+
 
 	public Integer getCodSala() {
 		return this.codSala;
@@ -74,5 +89,14 @@ public class Funcion implements Serializable {
 	public void setHoraInicio(Time horaInicio) {
 		this.horaInicio = horaInicio;
 	}
+
+	public BigDecimal getPrecio() {
+		return this.precio;
+	}
+
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
+	}
+
 
 }
