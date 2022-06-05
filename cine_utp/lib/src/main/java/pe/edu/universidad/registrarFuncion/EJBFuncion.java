@@ -30,7 +30,6 @@ public class EJBFuncion {
     private EntityManager em;
 	
 	public EJBFuncion() {
-		
 	}
 	
 	public List<DtoPeli> consultarPeliculaId(String cadena) {
@@ -61,20 +60,16 @@ public class EJBFuncion {
 		return lst;
 	}
 
-//	f.setSala(codSala);
-//	 f.setHoraInicio(hora);
-//	 f.setFecha(fecha);
-//	 f.setCodPeli(codPeli);
-//	 f.setPrecio(precio);
-//	 ejb.insertarFuncion(f);
-	
+
 	public void insertarFuncion(DtoFuncionNueva f) {
+		System.out.println("ya casI xd");
 		Funcion funcion = new Funcion();
 		funcion.setCodSala(f.getCodSala());
 		funcion.setFechaFuncion(f.getFecha());
 		funcion.setHoraInicio(f.getHoraInicio());
 		funcion.setPelicula(f.getPeli());
-//		funcion.setPrecio(12); NO SE COMO CASTARLO A BIG DECIMAL
+		funcion.setPrecio(new BigDecimal(f.getPrecio())); 
+		em.persist(funcion);
 	}
 
 }

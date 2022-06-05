@@ -25,7 +25,6 @@ public class EJBRegistroBoleta {
     private EntityManager em;
 	
     public EJBRegistroBoleta() {
-        // TODO Auto-generated constructor stub
     }
     
     public List<DtoClienteConsulta> consultarClientes(String cadena) {

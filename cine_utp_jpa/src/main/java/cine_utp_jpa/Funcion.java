@@ -22,6 +22,8 @@ public class Funcion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(generator="seq_funciones") 
+	@SequenceGenerator(name="seq_funciones",sequenceName="seq_funciones", allocationSize=1)
 	@Column(name="cod_funcion")
 	private Integer codFuncion;
 

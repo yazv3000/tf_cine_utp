@@ -1,6 +1,7 @@
 package pe.edu.universidad.entidades;
 
 public class sala {
+	
 	private int codigo;
 	private int capacidad;
 	

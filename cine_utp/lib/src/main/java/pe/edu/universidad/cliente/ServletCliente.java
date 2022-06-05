@@ -1,4 +1,4 @@
-package pe.edu.universidad.Servlet;
+package pe.edu.universidad.cliente;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pe.edu.universidad.cliente.EJBCliente;
 import pe.edu.universidad.dto.DtoClienteConsulta;
 import pe.edu.universidad.dto.DtoClienteNuevo;
 
@@ -27,7 +26,6 @@ public class ServletCliente extends HttpServlet {
 	
     public ServletCliente() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
@@ -73,6 +71,5 @@ public class ServletCliente extends HttpServlet {
 		cliente.setDireccion(request.getParameter("txtdireccion"));
 
 	}
-	
 	
 }

@@ -23,7 +23,6 @@ public class EJBCliente {
     private EntityManager em;
 	
     public EJBCliente() {
-        // TODO Auto-generated constructor stub
     }
     
     public List<DtoClienteConsulta> listarClientes(){

@@ -63,8 +63,6 @@
 </table>
 </div>
 
-<h3>nosale</h3>
-
 <table>
 <c:forEach items="${lst}" var="l">
 	<tr>

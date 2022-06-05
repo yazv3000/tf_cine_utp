@@ -28,7 +28,11 @@
 </header>
 
 <div style="margin: 100px 100px; border: gray 5px solid; border-radius: 10px; padding: 20px">
-
+<% 
+	DaoCliente dao = new DaoCliente();	
+	List<cliente> lstClientes = dao.consultarClientes();
+%>
+	
 	
 <table id="miTabla" class="display" style="font-family: sans-serif">
     <thead>

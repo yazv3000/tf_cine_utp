@@ -1,13 +1,12 @@
 package pe.edu.universidad.dto;
 
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cine_utp_jpa.Pelicula;
-
-
 
 public class DtoFuncionNueva {
 	private int codFuncion;
@@ -29,7 +28,14 @@ public class DtoFuncionNueva {
 
 	public Time getHoraInicio() {		return horaInicio;	}
 	public void setHoraInicio(String horaInicio) {        
-		Time time = Time.valueOf(horaInicio);
+		DateFormat format = new SimpleDateFormat("HH:mm");
+		long ms = 0;
+		try {
+			ms = format.parse(horaInicio).getTime();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Time time = new Time(ms);
 		this.horaInicio = time;
 	}
     
@@ -41,8 +47,9 @@ public class DtoFuncionNueva {
 		SimpleDateFormat sdt = new SimpleDateFormat("YYYY-MM-dd");
 	    try {
 			Date result = sdt.parse(fecha);
+			this.fecha = result;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			this.fecha = new Date();
 			e.printStackTrace();
 		}
 	}

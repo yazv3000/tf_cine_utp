@@ -24,6 +24,7 @@ public class DaoEmpleado extends DaoGenerico{
             PreparedStatement stm = cnx.prepareStatement(sql);
             rs = stm.executeQuery();
             while (rs.next()) {
+            	if(rs.getInt(1)==0)	 continue;
                 Empleado emp = new Empleado();
                 emp.setCod_empleado(rs.getInt(1));
                 emp.setNom_emp(rs.getString(2));

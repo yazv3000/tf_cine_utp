@@ -17,19 +17,20 @@ import pe.edu.universidad.dto.DtoPeli;
 import pe.edu.universidad.entidades.sala;
 
 /**
- * Servlet implementation class ServletPostPelicula
+ * Servlet implementation class ServletPostFuncion
  */
 @WebServlet("/ServletPostFuncion")
 public class ServletPostFuncion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	@EJB
 	EJBFuncion ejb;
-
-	public ServletPostFuncion() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
+	DtoPeli dto = new DtoPeli();
+	
+    public ServletPostFuncion() {
+        super();
+    }
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -41,52 +42,35 @@ public class ServletPostFuncion extends HttpServlet {
 			String nombrePelicula = request.getParameter("nom_peli");
 			List<DtoPeli> lst = ejb.consultarPeliculaId(nombrePelicula);
 			request.getSession().setAttribute("lstPeliculas", lst);
-			request.getRequestDispatcher("jsp/RegistrarFuncion.jsp").forward(request, response);
+			request.getRequestDispatcher("registrarFuncion/seleccionPelicula.jsp").forward(request, response);
 			break;
 			
-		case "agregar":
+		case "seleccionar":
 			int codPeli = Integer.parseInt(request.getParameter("codPeli"));
 			String nombre = request.getParameter("nombre");
 			int duracion = Integer.parseInt(request.getParameter("duracion"));
 			
-			List<DtoPeli> dtoPelis = (List<DtoPeli>) request.getSession().getAttribute("lstPeliculaFuncion");
-			if (dtoPelis == null) {
-				dtoPelis = new ArrayList<DtoPeli>();
-			}
 
-			DtoPeli dto = new DtoPeli();
 			dto.setCodigo(codPeli);
 			dto.setNombre(nombre);
 			dto.setDuracion(duracion);
-			dtoPelis.add(dto);
-			
-			//Salas
-			List<sala> salas = ejb.consultarSalas();
-			request.getSession().setAttribute("lstSalas", salas);
-			request.getSession().setAttribute("lstPeliculaFuncion", dtoPelis);
-			request.getRequestDispatcher("jsp/RegistrarFuncion.jsp").forward(request, response);
-			
+			request.getSession().setAttribute("peliculaDto", dto);
+			listarSalas(request);
+			request.getRequestDispatcher("registrarFuncion/registroFuncion.jsp").forward(request, response);
 			break;
-//		case "quitar":
-//			int codPelicula = Integer.parseInt(request.getParameter("codPeli"));
-//			List<DtoPeli> dtoLst = (List<DtoPeli>) request.getSession().getAttribute("lstPeliculaFuncion");
-//			for (DtoPeli dtoPeli : dtoLst) {
-//				if (dtoPeli.getCodigo() == codPelicula) {
-//					dtoLst.remove(dtoPeli);
-//					break;
-//				}
-//			}
-//			request.getRequestDispatcher("RegistrarFuncion.jsp").forward(request, response);
-//			break;
+
 		case "confirmar":
-			 codPeli = Integer.parseInt(request.getParameter("codPeli"));
+			
+			 dto = (DtoPeli) request.getSession().getAttribute("peliculaDto");
 			 Pelicula objpeli = new Pelicula();
-			 objpeli.setCodPelicula(codPeli);
+			 objpeli.setCodPelicula(dto.getCodigo());
 			 
 			 int codSala = Integer.parseInt(request.getParameter("sala"));
 			 String hora = request.getParameter("hora");
+			 System.out.println("Agregando .................."+hora+"esa es la hora");
 			 String fecha =  request.getParameter("fecha");
 			 double precio = Double.parseDouble(request.getParameter("precio"));
+			 
 			 DtoFuncionNueva f = new DtoFuncionNueva();
 			 
 			 f.setCodSala(codSala);
@@ -95,21 +79,30 @@ public class ServletPostFuncion extends HttpServlet {
 			 f.setPeli(objpeli);
 			 f.setPrecio(precio);
 			 ejb.insertarFuncion(f);
-			
 			 break;
 		}
+		
 
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("entra al get");
 		processRequest(request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("entra al post");
 		processRequest(request, response);
 	}
-
+	
+	private void listarSalas(HttpServletRequest request) {
+		//Salas
+		List<sala> salas = ejb.consultarSalas();
+		request.getSession().setAttribute("lstSalas", salas);
+		System.out.println("listando salas ...");
+	}
+	
 }
