@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta charset="ISO-8859-1" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/css/RegisClien.css"></link>
+	<title>Curso Nuevo</title>
+</h:head>
+<h:body class="body1">
+	<b:container style="text-align: -webkit-center;">
+		<b:row cellpadding="20">
+			<b:column>
+				<b:form id="formServPrest" inline="true" align="center">
+					<h1>REGISTRAR USUARIO</h1>
+					<h:panelGrid columns="2" cellpadding="20">
+						<b:inputText align="center" label="Primer Nombre" class="estinputs texto" placeholder="Primer Nombre"> </b:inputText>
+						<b:inputText label="Segundo Nombre" class="estinputs texto" > </b:inputText>
+						<b:inputText label="Apellido Paterno" class="estinputs texto" > </b:inputText>
+						<b:inputText label="Apellido Materno" class="estinputs texto" > </b:inputText>
+					
+					</h:panelGrid>
+					<br></br>
+					<h:commandButton value="Guardar"
+							action="#{beanCursoNuevo.guardarCurso}" align="center" class="boton texto"></h:commandButton>
+				</b:form>
+			</b:column>
+		</b:row>
+		
+	</b:container>
+</h:body>
+</html>

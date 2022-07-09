@@ -14,11 +14,11 @@
 	<nav class="nav">
 		<a class="logo nav-link">CineUTP</a>
 		<ul class="nav-menu">
-			<li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">Inicio</a></li>
-			<li class="nav-menu-item"><a href="jsp/Pelicula.jsp" class="nav-menu-link nav-link">pelicula</a></li>
-			<li class="nav-menu-item"><a href="jsp/Empleado.jsp" class="nav-menu-link nav-link">empleado</a></li>
+			<li class="nav-menu-item"><a href="${context}/index.jsp" class="nav-menu-link nav-link">Inicio</a></li>
+			<li class="nav-menu-item"><a href="${context}/jsp/Pelicula.jsp" class="nav-menu-link nav-link">pelicula</a></li>
+			<li class="nav-menu-item"><a href="${context}/jsp/Empleado.jsp" class="nav-menu-link nav-link">empleado</a></li>
 			<li class="nav-menu-item"><a href="<%=request.getContextPath()%>/ServletCliente?accion=listar" class="nav-menu-link nav-link">cliente</a></li>
-			<li class="nav-menu-item"><a href="registrarCliente/registroCliente.jsp" class="nav-menu-link nav-link">Registrese</a></li>
+			<li class="nav-menu-item"><a href="${context}/registrarCliente/registroCliente.jsp" class="nav-menu-link nav-link">Registrese</a></li>
 		</ul>
 	</nav>
 </header>

@@ -5,22 +5,44 @@
     --fondo: rgb(25, 23, 21);
     --secundario: #2473cd ;
 }
+.boton{
+	background-color: #ffc107;
+	border-radius: 20px;
+	padding: 10px;
+}
+.boton:hover{
+	background: var(--primario);
+    border: 1px solid #ffc107;
+    color: #ffc107;
+    cursor: pointer;
+}
 body{
-	background: #000;
-	margin: 40px;
+	background: #000 !important;
+	margin: 40px !important;
+}
+.texto{
+	font-size: 23px;
 }
 #formServPrest {
 	margin: 5px;
 	background-color: var(--primario);
     border-radius: 20px;
     color: white;
+    padding: 1px 20px 20px 20px;
+    text-align: -webkit-center !important;
+    text-align-last: center;
+    max-width: 50%;
 }
 .estinputs {
 	background: #000 !important;
 	color: white !important;
+	border-radius: 10px;
 }
 label {
 	color: white;
+	font-size: 23px !important;
+	text-align-last: center !important;
+	text-align: -webkit-center !important;
 }
 select {
 	color: white;
@@ -33,7 +55,11 @@ div {
 }
 input {
 	color: white;
+	padding-bottom: 10px;
 }
 .margen {
 	z-index: -100;
+}
+.form__fila{
+	padding: 0 0 10px 0;
 }
