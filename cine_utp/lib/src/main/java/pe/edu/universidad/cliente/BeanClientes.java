@@ -15,12 +15,20 @@ import pe.edu.universidad.dto.DtoClienteConsulta;
 @Named
 @SessionScoped
 public class BeanClientes {
+	
+	//ENTIDADES
 	private String cadenaCliente;
 	
-	private List<DtoClienteConsulta> lstCliente;
+	//LISTAS
+	private List<DtoClienteConsulta> lst;
 	
 	@EJB
-	private EJBCliente ejbCli;
+	private EJBCliente ejb;
+	
+	@PostConstruct
+	public  void inicializar() {
+		lst = ejb.listarClientes();
+	}
 	
 	public BeanClientes() {}
 }
