@@ -2,15 +2,18 @@ package pe.edu.universidad.dto;
 
 public class DtoClienteNuevo {
 
-	private String nomClie;
+	private String nomCliePrin;
+	private String nomClieSec;
 	private String apeClie;
 	private String correo;
 	private String direccion;
 	private String dni;
 
-	public String getNomClie() {		return nomClie;	}
-	public void setNomClie(String nomClie) {		this.nomClie = nomClie;	}
+	public String getNomCliePrin() {	return nomCliePrin;}
+	public void setNomCliePrin(String nomCliePrin) {	this.nomCliePrin = nomCliePrin;}
 	
+	public String getNomClieSec() {	return nomClieSec;}
+	public void setNomClieSec(String nomClieSec) {	this.nomClieSec = nomClieSec;}
 	public String getApeClie() {		return apeClie;	}
 	public void setApeClie(String apeClie) {		this.apeClie = apeClie;	}
 	

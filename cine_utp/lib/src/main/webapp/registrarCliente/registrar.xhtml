@@ -17,14 +17,13 @@
 					<h1>REGISTRAR USUARIO</h1>
 					<h:panelGrid columns="2" cellpadding="20">
 						<b:inputText align="center" label="Primer Nombre" class="estinputs texto" placeholder="Primer Nombre"> </b:inputText>
-						<b:inputText label="Segundo Nombre" class="estinputs texto" > </b:inputText>
+						<b:inputText label="Segundo Nombre" class="estinputs texto" value="#{beanClientes.dtoClienteNuevo.nomCliePrin}"> </b:inputText>
 						<b:inputText label="Apellido Paterno" class="estinputs texto" > </b:inputText>
 						<b:inputText label="Apellido Materno" class="estinputs texto" > </b:inputText>
-					
 					</h:panelGrid>
 					<br></br>
 					<h:commandButton value="Guardar"
-							action="#{beanCursoNuevo.guardarCurso}" align="center" class="boton texto"></h:commandButton>
+							action="#{BeanClienteNuevo.guardarCliente}" align="center" class="boton texto"></h:commandButton>
 				</b:form>
 			</b:column>
 		</b:row>

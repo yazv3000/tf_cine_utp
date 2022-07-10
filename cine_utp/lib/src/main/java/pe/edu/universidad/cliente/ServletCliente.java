@@ -64,7 +64,8 @@ public class ServletCliente extends HttpServlet {
 	}
 	
 	private void recuperarDatos(HttpServletRequest request) {
-		cliente.setNomClie(request.getParameter("txtnom1")+" "+request.getParameter("txtnom2"));
+		cliente.setNomCliePrin(request.getParameter("txtnom1"));
+		cliente.setNomClieSec(request.getParameter("txtnom2"));
 		cliente.setApeClie(request.getParameter("txtape1")+" "+request.getParameter("txtape2"));
 		cliente.setDni(request.getParameter("txtdni"));
 		cliente.setCorreo(request.getParameter("txtemail"));

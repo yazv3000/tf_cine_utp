@@ -18,6 +18,8 @@ import pe.edu.universidad.dto.DtoClienteNuevo;
 @SessionScoped
 public class BeanClienteNuevo implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	//ENTIDADES
 	private DtoClienteNuevo dtoClienteNuevo;
 	
