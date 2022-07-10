@@ -23,9 +23,6 @@ public class BeanClienteNuevo implements Serializable{
 	//ENTIDADES
 	private DtoClienteNuevo dtoClienteNuevo;
 	
-	//LISTAS
-	private List<DtoClienteConsulta> lst;
-	
 	@Inject
 	private BeanClientes beanClientes;
 	
@@ -40,19 +37,20 @@ public class BeanClienteNuevo implements Serializable{
 //		List<Usuario> ususario = new ArrayList<Usuario>();
 		
 	}
-	public String guardarCliente() {
+	public void guardarCliente() {
 		ejb.registrarCliente(dtoClienteNuevo);
-		beanClientes.inicializar();
-		return "cursos";
+//		beanClientes.inicializar();
 	}
-	
-	public DtoClienteNuevo getDtoNuevo() {
+
+	public DtoClienteNuevo getDtoClienteNuevo() {
 		return dtoClienteNuevo;
 	}
-	
-	public void setDtoNuevo(DtoClienteNuevo dtoNuevo) {
-		this.dtoClienteNuevo = dtoNuevo;
+
+	public void setDtoClienteNuevo(DtoClienteNuevo dtoClienteNuevo) {
+		this.dtoClienteNuevo = dtoClienteNuevo;
 	}
+	
+	
 	
 	
 }

@@ -1,5 +1,6 @@
 package pe.edu.universidad.cliente;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,8 +15,10 @@ import pe.edu.universidad.dto.DtoClienteConsulta;
 
 @Named
 @SessionScoped
-public class BeanClientes {
+public class BeanClientes implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	//ENTIDADES
 	private String cadenaCliente;
 	

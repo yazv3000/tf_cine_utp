@@ -45,8 +45,8 @@ public class EJBCliente {
 
     public void registrarCliente(DtoClienteNuevo dtoCli) {
     	Cliente cliente = new Cliente();
-		cliente.setNomCl(dtoCli.getNomCliePrin()+" "+dtoCli.getNomClieSec());
-		cliente.setApeCl(dtoCli.getApeClie());
+		cliente.setNomCl(dtoCli.getNomCliePrin()+" " + dtoCli.getNomClieSec());
+		cliente.setApeCl(dtoCli.getApeCliePrin()+ " " + dtoCli.getApeClieSec());
 		cliente.setDniCl(dtoCli.getDni());
 		cliente.setEmailCl(dtoCli.getCorreo());
 		cliente.setDireccionCl(dtoCli.getDireccion());
