@@ -40,7 +40,7 @@ body{
 }
 label {
 	color: white;
-	font-size: 23px !important;
+	font-size: 20px !important;
 	text-align-last: center !important;
 	text-align: -webkit-center !important;
 }
@@ -62,4 +62,7 @@ input {
 }
 .form__fila{
 	padding: 0 0 10px 0;
+}
+.row {
+	padding-block-end: 5px !important;
 }

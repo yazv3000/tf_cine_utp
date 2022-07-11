@@ -11,20 +11,70 @@
 </h:head>
 <h:body class="body1">
 	<b:container style="text-align: -webkit-center;">
-		<b:row cellpadding="20">
+		<b:row>
 			<b:column>
-				<b:form id="formServPrest" inline="true" align="center">
+				<b:form id="formServPrest" inline="true">
 					<h1>REGISTRAR USUARIO</h1>
-					<h:panelGrid columns="2" cellpadding="20">
-					
-						<b:inputText label="Primer Nombre" class="estinputs texto" placeholder="Primer Nombre" value="#{beanClienteNuevo.dtoClienteNuevo.nomCliePrin}"> </b:inputText>
-						<b:inputText label="Segundo Nombre" class="estinputs texto" placeholder="Segundo Nombre" value="#{beanClienteNuevo.dtoClienteNuevo.nomClieSec}"> </b:inputText>
-						<b:inputText label="Apellido Paterno" class="estinputs texto" placeholder="Apellido Paterno" value="#{beanClienteNuevo.dtoClienteNuevo.apeCliePrin}"> </b:inputText>
-						<b:inputText label="Apellido Materno" class="estinputs texto" placeholder="Apellido Materno" value="#{beanClienteNuevo.dtoClienteNuevo.apeClieSec}"> </b:inputText>
-						<b:inputText mask="integer" label="DNI" class="estinputs texto" placeholder="DNI" value="#{beanClienteNuevo.dtoClienteNuevo.dni}"> </b:inputText>
-						<b:inputText mask="email" label="Correo" class="estinputs texto" placeholder="Correo Electrónico" value="#{beanClienteNuevo.dtoClienteNuevo.correo}"> </b:inputText>
-						<b:inputText label="Dirección" class="estinputs texto" placeholder="Dirección" value="#{beanClienteNuevo.dtoClienteNuevo.direccion}"> </b:inputText>
-												
+					<h:panelGrid columns="1" >
+						<b:row>
+							<b:column span="6">
+									<label>Primer Nombre</label>
+							</b:column>
+							<b:column span="6">
+									<label>Segundo Nombre</label>
+							</b:column>
+						</b:row>
+						<b:row>
+							<b:column span="6">
+									<b:inputText class="estinputs texto" placeholder="Primer Nombre" value="#{beanClienteNuevo.dtoClienteNuevo.nomCliePrin}"> </b:inputText>
+							</b:column>
+							<b:column span="6">
+									<b:inputText class="estinputs texto" placeholder="Segundo Nombre" value="#{beanClienteNuevo.dtoClienteNuevo.nomClieSec}"> </b:inputText>
+							</b:column>
+						</b:row>
+						<b:row>
+							<b:column span="6">
+									<label>Apellido Paterno</label>
+							</b:column>
+							<b:column span="6">
+									<label>Apellido Materno</label>
+							</b:column>
+						</b:row>
+						<b:row>
+							<b:column span="6">
+									<b:inputText class="estinputs texto" placeholder="Apellido Paterno" value="#{beanClienteNuevo.dtoClienteNuevo.apeCliePrin}"> </b:inputText>
+							</b:column>
+							<b:column span="6">
+									<b:inputText class="estinputs texto" placeholder="Apellido Materno" value="#{beanClienteNuevo.dtoClienteNuevo.apeClieSec}"> </b:inputText>
+							</b:column>
+						</b:row>
+						<b:row>
+							<b:column span="6">
+									<label>DNI</label>
+							</b:column>
+							<b:column span="6">
+									<label>Correo</label>
+							</b:column>
+						</b:row>
+						
+						<b:row>
+							<b:column span="6">
+									<b:inputText mask="integer"  class="estinputs texto" placeholder="DNI" value="#{beanClienteNuevo.dtoClienteNuevo.dni}"> </b:inputText>
+							</b:column>
+							<b:column span="6">
+									<b:inputText mask="email"  class="estinputs texto" placeholder="Correo Electrónico" value="#{beanClienteNuevo.dtoClienteNuevo.correo}"> </b:inputText>
+							</b:column>	
+						</b:row>
+						<b:row>
+							<b:column span="12">
+									<label>Dirección</label>
+							</b:column>
+						</b:row>
+						<b:row>
+							<b:column span="12">
+									<b:inputText class="estinputs texto" placeholder="Dirección" value="#{beanClienteNuevo.dtoClienteNuevo.direccion}"> </b:inputText>
+							</b:column>
+						</b:row>				
 					</h:panelGrid>
 					<br></br>
 					<h:commandButton value="Guardar"
