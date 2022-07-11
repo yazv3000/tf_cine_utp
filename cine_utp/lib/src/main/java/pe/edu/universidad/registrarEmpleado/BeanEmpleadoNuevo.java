@@ -15,13 +15,15 @@ import pe.edu.universidad.dto.EmpleadoCargo;
 @SessionScoped
 public class BeanEmpleadoNuevo implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	//ENTIDADES
-	private DtoEmpleadoNuevo dtoEmpladoNuevo;
-	@EJB
-	private EJB_EmpleadoCargo ejbEmpleadoCargos;
+	private DtoEmpleadoNuevo dtoEmpleadoNuevo;
+	
 	//LISTAS
 	private List<EmpleadoCargo> lstCargos;
-
+	@EJB
+	private EJB_EmpleadoCargo ejbEmpleadoCargos;
 	@EJB
 	private EJB_Empleado ejbEmpleado;
 	
@@ -33,9 +35,13 @@ public class BeanEmpleadoNuevo implements Serializable{
 		lstCargos = ejbEmpleadoCargos.listarCargos();
 		System.out.println(lstCargos.size()+"TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 	}
-
-	public DtoEmpleadoNuevo getDtoEmpladoNuevo() {	return dtoEmpladoNuevo;}
-	public void setDtoEmpladoNuevo(DtoEmpleadoNuevo dtoEmpladoNuevo) {	this.dtoEmpladoNuevo = dtoEmpladoNuevo;}
+	
+	public void guardarEmpleado() {
+		ejbEmpleado.registrarEmpleado(dtoEmpleadoNuevo);
+	}
+	
+	public DtoEmpleadoNuevo getDtoEmpleadoNuevo() {	return dtoEmpleadoNuevo;}
+	public void setDtoEmpleadoNuevo(DtoEmpleadoNuevo dtoEmpleadoNuevo) {	this.dtoEmpleadoNuevo = dtoEmpleadoNuevo;}
 
 	public List<EmpleadoCargo> getLstCargos() {	return lstCargos;}
 	public void setLstCargos(List<EmpleadoCargo> lstCargos) {	this.lstCargos = lstCargos;}

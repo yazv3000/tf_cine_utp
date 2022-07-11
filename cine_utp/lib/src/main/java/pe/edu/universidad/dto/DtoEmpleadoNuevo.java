@@ -1,6 +1,10 @@
 package pe.edu.universidad.dto;
 
-public class DtoEmpleadoNuevo {
+import java.io.Serializable;
+
+public class DtoEmpleadoNuevo implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	// ATRIBUTOS
 	private int cod_empleado; 
 	private int cod_cargo;

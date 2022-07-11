@@ -1,5 +1,7 @@
 package pe.edu.universidad.registrarEmpleado;
 
+import java.math.BigDecimal;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -26,6 +28,7 @@ public class EJB_Empleado {
     	empleado.setCodCargo(dtoEmple.getCod_cargo());
     	empleado.setDireccionEmp(dtoEmple.getDireccion_emp());
     	empleado.setEmailEmp(dtoEmple.getDireccion_emp());
+    	empleado.setSalario(new BigDecimal(dtoEmple.getSalario()));
     	empleado.setFotoEmp(null);
     }
 }
