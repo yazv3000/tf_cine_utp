@@ -6,20 +6,16 @@
     --secundario: #2473cd ;
 }
 .select2-selection__rendered{
-	background-color: var(--fondo) !important;
-	color: rgb(129 129 129) !important;
+	background-color: var(--primario) !important;
+	color: var(--fondo) !important;
 }
 .select2-selection select2-selection--single{
-	background-color: var(--fondo) !important;
-	color: rgb(129 129 129) !important;
+	background-color: var(--primario) !important;
+	color: var(--fondo) !important;
 }
-.select2-search__field{
-	background-color: var(--fondo) !important;
-	color: rgb(129 129 129) !important;
-}
-.select2-results{
-	background-color: var(--fondo) !important;
-	color: rgb(129 129 129) !important;
+.select2-dropdown select2-dropdown--below{
+	background-color: var(--primario) !important;
+	color: var(--fondo) !important;
 }
 .boton{
 	background-color: #ffc107;
