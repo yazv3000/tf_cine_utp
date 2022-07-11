@@ -5,11 +5,28 @@
     --fondo: rgb(25, 23, 21);
     --secundario: #2473cd ;
 }
+.select2-selection__rendered{
+	background-color: var(--fondo) !important;
+	color: rgb(129 129 129) !important;
+}
+.select2-selection select2-selection--single{
+	background-color: var(--fondo) !important;
+	color: rgb(129 129 129) !important;
+}
+.select2-search__field{
+	background-color: var(--fondo) !important;
+	color: rgb(129 129 129) !important;
+}
+.select2-results{
+	background-color: var(--fondo) !important;
+	color: rgb(129 129 129) !important;
+}
 .boton{
 	background-color: #ffc107;
 	border-radius: 20px;
 	padding: 10px;
 }
+
 .boton:hover{
 	background: var(--primario);
     border: 1px solid #ffc107;

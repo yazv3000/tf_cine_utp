@@ -42,15 +42,7 @@ public class BeanClienteNuevo implements Serializable{
 //		beanClientes.inicializar();
 	}
 
-	public DtoClienteNuevo getDtoClienteNuevo() {
-		return dtoClienteNuevo;
-	}
-
-	public void setDtoClienteNuevo(DtoClienteNuevo dtoClienteNuevo) {
-		this.dtoClienteNuevo = dtoClienteNuevo;
-	}
-	
-	
-	
+	public DtoClienteNuevo getDtoClienteNuevo() {	return dtoClienteNuevo;}
+	public void setDtoClienteNuevo(DtoClienteNuevo dtoClienteNuevo) {	this.dtoClienteNuevo = dtoClienteNuevo;}
 	
 }

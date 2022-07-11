@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" type="text/css"
@@ -58,6 +59,7 @@
 						</b:row>
 						
 						<b:row>
+							
 							<b:column span="6">
 									<b:inputText mask="integer"  class="estinputs texto" placeholder="DNI" value="#{beanClienteNuevo.dtoClienteNuevo.dni}"> </b:inputText>
 							</b:column>
@@ -66,12 +68,22 @@
 							</b:column>	
 						</b:row>
 						<b:row>
-							<b:column span="12">
+							<b:column span="6">
+									<label>Cargo</label>
+							</b:column>
+							<b:column span="6">
 									<label>Dirección</label>
 							</b:column>
 						</b:row>
 						<b:row>
-							<b:column span="12">
+							<b:column span="6">
+								<b:selectOneMenu class="estinputs texto" colMd="2" required="true" labelColMd="2" select2="true">
+							      <c:forEach items="#{beanEmpleadoNuevo.lstCargos}" var="d">
+							      		<f:selectItem class="estinputs texto" itemValue="#{d.nombreCargo}" itemLabel="#{c.nombreCargo}" value="#{c.nombreCargo}"/>
+							      </c:forEach>
+							    </b:selectOneMenu>
+							</b:column>
+							<b:column span="6">
 									<b:inputText class="estinputs texto" placeholder="Dirección" value="#{beanClienteNuevo.dtoClienteNuevo.direccion}"> </b:inputText>
 							</b:column>
 						</b:row>				
