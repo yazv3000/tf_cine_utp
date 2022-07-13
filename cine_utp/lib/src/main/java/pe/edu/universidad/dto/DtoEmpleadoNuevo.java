@@ -9,7 +9,7 @@ public class DtoEmpleadoNuevo implements Serializable{
 	private int cod_empleado; 
 	private int cod_cargo;
 	private String cargo;
-	private String nom_emp_Prin, nom_emp_Sec, ape_emp_Prin, ape_emp_Sec;
+	private String nom_emp_prin, nom_emp_sec, ape_emp_prin, ape_emp_sec;
 	private String email_emp;
 	private String direccion_emp;
 	private double salario;
@@ -28,17 +28,17 @@ public class DtoEmpleadoNuevo implements Serializable{
 	public String getCargo() {return cargo;}
 	public void setCargo(String cargo) {	this.cargo = cargo;	}
 	
-	public String getNom_emp_Prin() {	return nom_emp_Prin;}
-	public void setNom_emp_Prin(String nom_emp_Prin) {this.nom_emp_Prin = nom_emp_Prin;}
-	
-	public String getNom_emp_Sec() {	return nom_emp_Sec;}
-	public void setNom_emp_Sec(String nom_emp_Sec) {this.nom_emp_Sec = nom_emp_Sec;}
+	public String getNom_emp_prin() {	return nom_emp_prin;}
+	public void setNom_emp_prin(String nom_emp_prin) {	this.nom_emp_prin = nom_emp_prin;}
 
-	public String getApe_emp_Prin() {	return ape_emp_Prin;}
-	public void setApe_emp_Prin(String ape_emp_Prin) {	this.ape_emp_Prin = ape_emp_Prin;}
+	public String getNom_emp_sec() {	return nom_emp_sec;	}
+	public void setNom_emp_sec(String nom_emp_sec) {	this.nom_emp_sec = nom_emp_sec;}
+
+	public String getApe_emp_prin() {	return ape_emp_prin;}
+	public void setApe_emp_prin(String ape_emp_prin) {	this.ape_emp_prin = ape_emp_prin;}
 	
-	public String getApe_emp_Sec() {	return ape_emp_Sec;}
-	public void setApe_emp_Sec(String ape_emp_Sec) {	this.ape_emp_Sec = ape_emp_Sec;}
+	public String getApe_emp_sec() {	return ape_emp_sec;}
+	public void setApe_emp_sec(String ape_emp_sec) {	this.ape_emp_sec = ape_emp_sec;}
 
 	public String getEmail_emp() {		return email_emp;	}
 	public void setEmail_emp(String email_emp) {		this.email_emp = email_emp;	}

@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import cine_utp_jpa.Empleado;
 import pe.edu.universidad.dto.DtoEmpleadoNuevo;
@@ -14,21 +16,24 @@ import pe.edu.universidad.dto.DtoEmpleadoNuevo;
 @Stateless
 @LocalBean
 public class EJB_Empleado {
-
-    /**
-     * Default constructor. 
-     */
+	
+	@PersistenceContext(unitName = "cine_utp_jpa")
+    private EntityManager em;
+    
     public EJB_Empleado() {
     }
     
     public void registrarEmpleado(DtoEmpleadoNuevo dtoEmple) {
+    	
     	Empleado empleado = new Empleado();
-    	empleado.setNomEmp(dtoEmple.getNom_emp_Prin()+ " " + dtoEmple.getNom_emp_Sec());
-    	empleado.setApeEmp(dtoEmple.getApe_emp_Prin()+ " " + dtoEmple.getApe_emp_Sec() );
+    	empleado.setNomEmp(dtoEmple.getNom_emp_prin()+ " " + dtoEmple.getNom_emp_sec());
+    	empleado.setApeEmp(dtoEmple.getApe_emp_prin()+ " " + dtoEmple.getApe_emp_sec() );
     	empleado.setCodCargo(dtoEmple.getCod_cargo());
     	empleado.setDireccionEmp(dtoEmple.getDireccion_emp());
     	empleado.setEmailEmp(dtoEmple.getDireccion_emp());
     	empleado.setSalario(new BigDecimal(dtoEmple.getSalario()));
     	empleado.setFotoEmp(null);
+    	em.persist(empleado);
+    	
     }
 }

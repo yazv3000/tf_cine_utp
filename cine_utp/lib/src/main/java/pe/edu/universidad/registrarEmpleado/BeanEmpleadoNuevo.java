@@ -28,7 +28,9 @@ public class BeanEmpleadoNuevo implements Serializable{
 	private EJB_Empleado ejbEmpleado;
 	
 	
-	public BeanEmpleadoNuevo() {}
+	public BeanEmpleadoNuevo() {
+		dtoEmpleadoNuevo = new DtoEmpleadoNuevo();
+	}
 	
 	@PostConstruct
 	public void inicializar() {
