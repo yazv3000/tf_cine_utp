@@ -76,9 +76,9 @@
 						</b:row>
 						<b:row>
 							<b:column span="6">
-								<b:selectOneMenu class="estinputs texto" colMd="2" required="true" labelColMd="2" select2="true">
+								<b:selectOneMenu value="#{beanEmpleadoNuevo.dtoEmpleadoNuevo.cod_cargo}" class="estinputs texto" colMd="2" required="true" labelColMd="2" select2="true" >
 							      <c:forEach items="#{beanEmpleadoNuevo.lstCargos}" var="d">
-							      		<f:selectItem class="estinputs texto" Value="#{d.idEmpleadoCargo}" itemLabel="#{d.nombreCargo}" itemvalue="#{d.idEmpleadoCargo}" />
+							      		<f:selectItem class="estinputs texto" itemValue="#{d.idEmpleadoCargo}" itemLabel="#{d.nombreCargo}" itemvalue="#{d.idEmpleadoCargo}" />
 							      </c:forEach>
 							    </b:selectOneMenu>
 							</b:column>
