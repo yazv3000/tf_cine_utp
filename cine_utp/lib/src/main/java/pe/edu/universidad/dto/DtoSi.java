@@ -2,20 +2,24 @@ package pe.edu.universidad.dto;
 
 import java.io.Serializable;
 
-public class DtoPelicula implements Serializable{
+public class DtoSi implements Serializable{
 	
-	private int Id;
+	private int id;
+
 	private String nombre;
-	
+
 	public int getId() {
-		return Id;
+		return id;
 	}
+
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}

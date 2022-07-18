@@ -11,28 +11,21 @@
 <title>Insert title here</title>
 </head>
 <body style="background: none;">
-<%@ page import="pe.edu.universidad.dao.*"%>
-<%@ page import="pe.edu.universidad.entidades.*"%>
-<%@ page import="java.util.List"%>
 
 <header class="header">
 	<nav class="nav">
 		<a class="logo nav-link">CineUTP</a>
 		<ul class="nav-menu">
-			<li class="nav-menu-item"><a href="${context}/index.html" class="nav-menu-link nav-link">Inicio</a></li>
-			<li class="nav-menu-item"><a href="${context}/Pelicula.jsp" class="nav-menu-link nav-link">pelicula</a></li>
-			<li class="nav-menu-item"><a href="${context}/Empleado.jsp" class="nav-menu-link nav-link">empleado</a></li>
-			<li class="nav-menu-item"><a href="${context}/Cliente.jsp" class="nav-menu-link nav-link">cliente</a></li>
+			<li class="nav-menu-item"><a href="${context}/index.jsp" class="nav-menu-link nav-link">Inicio</a></li>
+			<li class="nav-menu-item"><a href="${context}/jsp/Pelicula.jsp" class="nav-menu-link nav-link">pelicula</a></li>
+			<li class="nav-menu-item"><a href="${context}/jsp/Empleado.jsp" class="nav-menu-link nav-link">empleado</a></li>
+			<li class="nav-menu-item"><a href="<%=request.getContextPath()%>/ServletCliente?accion=listar" class="nav-menu-link nav-link">cliente</a></li>
+			<li class="nav-menu-item"><a href="${context}/registrarCliente/registroCliente.jsp" class="nav-menu-link nav-link">Registrese</a></li>
 		</ul>
 	</nav>
 </header>
 
-<div style="margin: 100px 100px; border: gray 5px solid; border-radius: 10px; padding: 20px">
-<% 
-	DaoCliente dao = new DaoCliente();	
-	List<cliente> lstClientes = dao.consultarClientes();
-%>
-	
+<div style="margin: 100px 100px; border: gray 5px solid; border-radius: 10px; padding: 20px">	
 	
 <table id="miTabla" class="display" style="font-family: sans-serif">
     <thead>

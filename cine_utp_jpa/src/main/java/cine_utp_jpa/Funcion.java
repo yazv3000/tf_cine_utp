@@ -27,10 +27,8 @@ public class Funcion implements Serializable {
 	@Column(name="cod_funcion")
 	private Integer codFuncion;
 
-	//bi-directional many-to-one association to Pelicula
-	@ManyToOne
-	@JoinColumn(name="cod_pelicula")
-	private Pelicula pelicula;
+	@Column(name="cod_pelicula")
+	private Integer codPelicula;
 
 	@Column(name="cod_sala")
 	private Integer codSala;
@@ -42,9 +40,7 @@ public class Funcion implements Serializable {
 	@Column(name="hora_inicio")
 	private Time horaInicio;
 
-	@Column(name="precio")
 	private BigDecimal precio;
-
 
 	public Funcion() {
 	}
@@ -57,14 +53,13 @@ public class Funcion implements Serializable {
 		this.codFuncion = codFuncion;
 	}
 
-	public Pelicula getPelicula() {
-		return this.pelicula;
+	public Integer getCodPelicula() {
+		return this.codPelicula;
 	}
 
-	public void setPelicula(Pelicula pelicula) {
-		this.pelicula = pelicula;
+	public void setCodPelicula(Integer codPelicula) {
+		this.codPelicula = codPelicula;
 	}
-
 
 	public Integer getCodSala() {
 		return this.codSala;

@@ -15,7 +15,7 @@
 	<div class="d-flex justify-content-center">
 		<div class="row pt-5">
 		<div class="col-3"></div>
-		<div class="card col-12" id="formServPrest">
+		<div class="card col-5" id="formServPrest">
 			<div class="card-body">
 				<h1 align="center"><b>Registrar Cliente</b></h1>
 				<form class="justify-content-center needs-validation" align="center" action="<%=request.getContextPath()%>/ServletCliente" method="post" novalidate>
@@ -68,7 +68,12 @@
 					<div class="form-group text-center pt-2">
 						<input class="btn btn-warning" type="submit" name="accion" value="Registrar">
 					</div>
+					<div class="form-group text-center pt-2">
+						<a style="color: red; background: blue;" href="${context}/registrarCliente/registrar.xhtml">a</a>
+					</div>
 				</form>
+				
+				
 			</div>
 		</div>
 		</div>
