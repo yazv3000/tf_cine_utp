@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+<meta charset="UTF-8"/>
+<title>Nueva Funcion</title>
+</h:head>
+<h:body>
+<b:navBar brand="Cine - UTP" brandHref="#" inverse="true">
+  <b:navbarLinks>
+    <b:navLink value="Funciones" href="#"></b:navLink>
+    <b:navLink value="Peliculas" href="#"></b:navLink>
+<!--     <b:navLink value="" href="#"></b:navLink> -->
+  </b:navbarLinks>
+</b:navBar>
+
+<br/>
+<b:panel icon-spin="true" icon="cd" title="Nueva Función" look="primary" >
+<h:form>
+<h:panelGrid columns="2">
+	<h:outputText value="Pelicula: "></h:outputText>
+	<b:selectOneMenu value="#{beanFuncion.dtoFuncionNueva.codPelicula}" select2="true">
+		<f:selectItems value="#{beanFuncion.siPeliculas}" />
+	</b:selectOneMenu>
+	<h:outputText value="Sala: "></h:outputText>
+	<b:selectOneMenu value="#{beanFuncion.dtoFuncionNueva.codSala}" select2="true">
+		<f:selectItems value="#{beanFuncion.siSalas}" />
+	</b:selectOneMenu>
+	<h:outputText value="Fecha y hora: "></h:outputText>
+	<b:dateTimePicker format="MM/DD/YYYY HH:mm" locale="en" value="#{beanFuncion.dtoFuncionNueva.fecha}"/>
+	<br/>
+<!-- 	<b:dateTimePicker label="Hora de la Función" id="fecha" value="#{beanReserva.fecha}" mode="inline" format="HH:mm"></b:dateTimePicker> -->
+	<h:outputText ></h:outputText>
+	<h:outputText value="Precio: "></h:outputText>
+	<b:inputText  labelStyle="width:50px;" value="#{beanFuncion.dtoFuncionNueva.precio}">
+      <f:facet name="prepend">
+        <h:outputText value="S/." />
+      </f:facet>
+    </b:inputText>
+    <b:commandButton iconAwesome="fa-save" value="Guardar" action="#{beanFuncion.guardarFuncion}" look="success"></b:commandButton>
+</h:panelGrid>
+</h:form>
+</b:panel>
+</h:body>
+</html>

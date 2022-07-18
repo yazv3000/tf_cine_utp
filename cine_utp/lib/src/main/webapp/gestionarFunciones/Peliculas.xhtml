@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+<meta charset="UTF-8"/>
+<title>Gestionar Funciones</title>
+</h:head>
+<h:body>
+<h:form>
+<h:panelGrid columns="3">
+	<h:outputText value="Pelicula: "></h:outputText>
+	<h:inputText id="cadenaPelicula" value="#{beanPeliculas.cadenaPelicula}"></h:inputText>
+	<h:commandButton value="Buscar" action="#{beanPeliculas.consultarPeliculas}">
+		<f:ajax execute="cadenaPelicula" render="panData"></f:ajax>
+	</h:commandButton>
+</h:panelGrid>
+<h:panelGrid id="panData">
+	<h:dataTable id="dataPeliculas" value="#{beanPeliculas.lstPelicula}" var="p" rendered="#{not empty beanPeliculas.lstPelicula}">
+	<h:column>
+		<f:facet name="header">
+			ID
+		</f:facet>
+		<h:commandLink action="#{beanPeliculas.irNuevaFuncion}">
+			<h:outputText value="#{p.id}"></h:outputText>
+			<f:param name="peliculaId" value="#{p.id}"></f:param>
+		</h:commandLink>
+	</h:column>
+	
+	<h:column>
+		<f:facet name="header">
+			Nombre
+		</f:facet>
+		<h:outputText value="#{p.nombre}"></h:outputText>
+	</h:column>
+	
+	</h:dataTable>
+	<h:outputText value="No se encontraron resultados" rendered="#{empty beanPeliculas.lstPelicula}"></h:outputText>
+	</h:panelGrid>
+</h:form>
+
+</h:body>
+</html>
