@@ -154,6 +154,7 @@ CREATE TABLE public.funcion
 	cod_sala integer NOT NULL,
 	fecha_funcion date NOT NULL DEFAULT CURRENT_DATE,
 	hora_inicio time NOT NULL,
+	precio numeric NOT NULL,
 	PRIMARY KEY (cod_funcion),
 	CONSTRAINT fk_peli
 		FOREIGN KEY (cod_pelicula) REFERENCES public.pelicula(cod_pelicula),
@@ -179,6 +180,45 @@ CREATE TABLE public.entrada
 );
 ------------------------------------------------------------
 
-
-
-
+CREATE TABLE IF NOT EXISTS public.venta_producto
+(
+    cod_venta integer NOT NULL,
+    cod_cliente integer NOT NULL,
+	cod_vendedor integer NOT NULL,
+    fecha_venta date NOT NULL,
+	monto_total numeric NOT NULL,
+    PRIMARY KEY (cod_venta),
+    CONSTRAINT fk_comprador FOREIGN KEY (cod_cliente) REFERENCES public.cliente(cod_cliente) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_vendedor FOREIGN KEY (cod_vendedor) REFERENCES public.empleado(cod_empleado) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+-------------------------------------------
+CREATE TABLE IF NOT EXISTS producto
+(
+	cod_producto integer NOT NULL,
+	nombre character varying(50) NOT NULL,
+	precio integer NOT NULL,
+	PRIMARY KEY (cod_producto)
+);
+INSERT INTO public.producto
+	VALUES 
+	(1, 'Gaseosa', 2),
+	(2, 'Palomitas de Maiz', 15),
+	(3, 'Chocolate', 3),
+	(4, 'Refresco', 2),
+	(5, 'Bom bom', 1);
+--------------------------------
+CREATE TABLE IF NOT EXISTS public.detalle_venta
+(
+	cod_venta integer NOT NULL,
+	cod_producto integer NOT NULL,
+	cantidad integer NOT NULL,
+	PRIMARY KEY (cod_venta, cod_producto),
+	CONSTRAINT fk_venta FOREIGN KEY (cod_venta) REFERENCES public.venta_producto(cod_venta) ON UPDATE CASCADE ON DELETE RESTRICT,
+	CONSTRAINT fk_snack FOREIGN KEY (cod_producto) REFERENCES public.producto(cod_producto) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+-----SECUENCIADORES
+CREATE SEQUENCE IF NOT EXISTS public.seq_venta INCREMENT 1 START 1000;
+CREATE SEQUENCE IF NOT EXISTS public.seq_producto INCREMENT 1 START 100;
+CREATE SEQUENCE public.seq_tickets    INCREMENT 1     START 1000;
+CREATE SEQUENCE public.seq_funciones     INCREMENT 1    START 100;
+CREATE SEQUENCE public.seq_clientes    INCREMENT 1    START 300;
