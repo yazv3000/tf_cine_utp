@@ -186,6 +186,7 @@ CREATE TABLE IF NOT EXISTS public.venta_producto
     cod_cliente integer NOT NULL,
 	cod_vendedor integer NOT NULL,
     fecha_venta date NOT NULL,
+	cantidad integer NOT NULL,
 	monto_total numeric NOT NULL,
     PRIMARY KEY (cod_venta),
     CONSTRAINT fk_comprador FOREIGN KEY (cod_cliente) REFERENCES public.cliente(cod_cliente) ON UPDATE CASCADE ON DELETE RESTRICT,
@@ -197,24 +198,32 @@ CREATE TABLE IF NOT EXISTS producto
 	cod_producto integer NOT NULL,
 	nombre character varying(50) NOT NULL,
 	precio integer NOT NULL,
+	tipo character varying(50) NOT NULL,
 	PRIMARY KEY (cod_producto)
 );
 INSERT INTO public.producto
 	VALUES 
-	(1, 'Gaseosa', 2),
-	(2, 'Palomitas de Maiz', 15),
-	(3, 'Chocolate', 3),
-	(4, 'Refresco', 2),
-	(5, 'Bom bom', 1);
---------------------------------
-CREATE TABLE IF NOT EXISTS public.detalle_venta
+	(1, 'Gaseosa', 10, 'unitario'),
+	(2, 'Palomitas de Maiz', 15, 'unitario'),
+	(3, 'Chocolate', 8, 'unitario'),
+	(4, 'Refresco', 12, 'unitario'),
+	(5, 'Vizzio', 5, 'unitario');
+	(6, '1 Canchita Gigante + 2 Bebidas (21oz)', 40, 'combo')
+	(7, '2 Canchita Gigante + 2 Bebidas (21oz) ', 45, 'combo')
+	(8, '1 Canchita Grande + 2 Bebidas Medianas', 30, 'combo')
+	(9, '1 Canchita Grande + 2 Bebidas Pequeñas', 25, 'combo')
+	(10, '1 Canchita Gigante + 1 Bebidas Medianas', 20, 'combo')
+------------------------------------------------
+CREATE TABLE public.alquiler_sala
 (
-	cod_venta integer NOT NULL,
-	cod_producto integer NOT NULL,
-	cantidad integer NOT NULL,
-	PRIMARY KEY (cod_venta, cod_producto),
-	CONSTRAINT fk_venta FOREIGN KEY (cod_venta) REFERENCES public.venta_producto(cod_venta) ON UPDATE CASCADE ON DELETE RESTRICT,
-	CONSTRAINT fk_snack FOREIGN KEY (cod_producto) REFERENCES public.producto(cod_producto) ON UPDATE CASCADE ON DELETE RESTRICT
+	cod_alquiler integer NOT NULL,
+	cod_sala integer NOT NULL,
+	fecha_evento date NOT NULL DEFAULT CURRENT_DATE,
+	hora_inicio time NOT NULL,
+	precio numeric NOT NULL,
+	PRIMARY KEY (cod_alquiler),
+	CONSTRAINT fk_sala2
+		FOREIGN KEY (cod_sala) REFERENCES public.sala(cod_sala)
 );
 -----SECUENCIADORES
 CREATE SEQUENCE IF NOT EXISTS public.seq_venta INCREMENT 1 START 1000;
