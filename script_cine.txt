@@ -207,12 +207,12 @@ INSERT INTO public.producto
 	(2, 'Palomitas de Maiz', 15, 'unitario'),
 	(3, 'Chocolate', 8, 'unitario'),
 	(4, 'Refresco', 12, 'unitario'),
-	(5, 'Vizzio', 5, 'unitario');
-	(6, '1 Canchita Gigante + 2 Bebidas (21oz)', 40, 'combo')
-	(7, '2 Canchita Gigante + 2 Bebidas (21oz) ', 45, 'combo')
-	(8, '1 Canchita Grande + 2 Bebidas Medianas', 30, 'combo')
-	(9, '1 Canchita Grande + 2 Bebidas Pequeñas', 25, 'combo')
-	(10, '1 Canchita Gigante + 1 Bebidas Medianas', 20, 'combo')
+	(5, 'Vizzio', 5, 'unitario'),
+	(6, '1 Canchita Gigante + 2 Bebidas (21oz)', 40, 'combo'),
+	(7, '2 Canchita Gigante + 2 Bebidas (21oz) ', 45, 'combo'),
+	(8, '1 Canchita Grande + 2 Bebidas Medianas', 30, 'combo'),
+	(9, '1 Canchita Grande + 2 Bebidas Pequeñas', 25, 'combo'),
+	(10, '1 Canchita Gigante + 1 Bebidas Medianas', 20, 'combo');
 ------------------------------------------------
 CREATE TABLE public.alquiler_sala
 (
