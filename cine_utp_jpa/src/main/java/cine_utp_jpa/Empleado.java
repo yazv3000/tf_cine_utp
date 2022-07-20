@@ -15,8 +15,6 @@ public class Empleado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator="seq_empleado") 
-	@SequenceGenerator(name="seq_empleado",sequenceName="seq_empleado", allocationSize=1)
 	@Column(name="cod_empleado")
 	private Integer codEmpleado;
 

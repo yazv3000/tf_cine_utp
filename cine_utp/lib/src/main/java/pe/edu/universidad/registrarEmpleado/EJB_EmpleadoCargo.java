@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.ws.rs.Path;
 
 import cine_utp_jpa.Cargo;
 import pe.edu.universidad.dto.EmpleadoCargo;
@@ -15,6 +16,7 @@ import pe.edu.universidad.dto.EmpleadoCargo;
 /**
  * Session Bean implementation class EJB_EmpleadoCargo
  */
+@Path("EJB_EmpleadoCargo")
 @Stateless
 @LocalBean
 public class EJB_EmpleadoCargo {
@@ -25,6 +27,7 @@ public class EJB_EmpleadoCargo {
         // TODO Auto-generated constructor stub
     }
     
+    @Path("listarCargos")
     public List<EmpleadoCargo> listarCargos(){
     	Query query = em.createNamedQuery("Cargo.findAll");
     	List<EmpleadoCargo> lst = new ArrayList<EmpleadoCargo>();

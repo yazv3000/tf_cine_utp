@@ -9,7 +9,6 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="cliente")
 @NamedQueries({ 
 @NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c"),
 @NamedQuery(name="Cliente.consultarNombreDni", query="SELECT c FROM Cliente c where upper(concat(c.nomCl,' ',c.apeCl)) like :cadena or c.dniCl like :cadena")

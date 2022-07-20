@@ -6,6 +6,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 
 import cine_utp_jpa.Empleado;
 import pe.edu.universidad.dto.DtoEmpleadoNuevo;
@@ -13,6 +15,7 @@ import pe.edu.universidad.dto.DtoEmpleadoNuevo;
 /**
  * Session Bean implementation class EJB_Empleado
  */
+@Path("EJB_Empleado")
 @Stateless
 @LocalBean
 public class EJB_Empleado {
@@ -23,6 +26,8 @@ public class EJB_Empleado {
     public EJB_Empleado() {
     }
     
+    @POST
+    @Path("registrarEmpleado")
     public void registrarEmpleado(DtoEmpleadoNuevo dtoEmple) {
     	
     	Empleado empleado = new Empleado();
@@ -31,7 +36,7 @@ public class EJB_Empleado {
     	empleado.setCodCargo(dtoEmple.getCod_cargo());
     	empleado.setDireccionEmp(dtoEmple.getDireccion_emp());
     	empleado.setEmailEmp(dtoEmple.getDireccion_emp());
-    	empleado.setSalario(new BigDecimal(dtoEmple.getSalario()));
+    	empleado.setSalario(BigDecimal.valueOf(dtoEmple.getSalario()));
     	empleado.setFotoEmp(null);
     	em.persist(empleado);
     	

@@ -35,11 +35,11 @@ public class BeanEmpleadoNuevo implements Serializable{
 	@PostConstruct
 	public void inicializar() {
 		lstCargos = ejbEmpleadoCargos.listarCargos();
-		System.out.println(lstCargos.size()+"TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 	}
 	
 	public void guardarEmpleado() {
 		ejbEmpleado.registrarEmpleado(dtoEmpleadoNuevo);
+		
 	}
 	
 	public DtoEmpleadoNuevo getDtoEmpleadoNuevo() {	return dtoEmpleadoNuevo;}
