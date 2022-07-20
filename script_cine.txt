@@ -185,12 +185,14 @@ CREATE TABLE IF NOT EXISTS public.venta_producto
     cod_venta integer NOT NULL,
     cod_cliente integer NOT NULL,
 	cod_vendedor integer NOT NULL,
+	cod_producto integer NOT NULL,
     fecha_venta date NOT NULL,
 	cantidad integer NOT NULL,
 	monto_total numeric NOT NULL,
     PRIMARY KEY (cod_venta),
     CONSTRAINT fk_comprador FOREIGN KEY (cod_cliente) REFERENCES public.cliente(cod_cliente) ON UPDATE CASCADE ON DELETE RESTRICT,
-    CONSTRAINT fk_vendedor FOREIGN KEY (cod_vendedor) REFERENCES public.empleado(cod_empleado) ON UPDATE CASCADE ON DELETE RESTRICT
+    CONSTRAINT fk_producto FOREIGN KEY (cod_producto) REFERENCES public.producto(cod_producto) ON UPDATE CASCADE ON DELETE RESTRICT,
+	CONSTRAINT fk_vendedor FOREIGN KEY (cod_vendedor) REFERENCES public.empleado(cod_empleado) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 -------------------------------------------
 CREATE TABLE IF NOT EXISTS producto
