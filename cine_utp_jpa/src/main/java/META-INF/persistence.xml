@@ -11,5 +11,6 @@
 		<class>cine_utp_jpa.Pelicula</class>
 		<class>cine_utp_jpa.Sala</class>
 		<class>cine_utp_jpa.TipoPelicula</class>
+		<class>cine_utp_jpa.HorarioSala</class>
 	</persistence-unit>
 </persistence>
