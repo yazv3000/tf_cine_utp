@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<style>
+.Bimage {
+	background-image:
+		url("https://es-mb.theepochtimes.com/assets/uploads/2018/06/GettyImages-961620930-700x420.jpg");
+}
+</style>
+	<title>Ticket - Selección de Función</title>
+</h:head>
+
+<h:body styleClass="Bimage">
+
+	<!--  Navbar -->
+	<b:navBar brand="Cine - UTP" brandHref="#" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Compra de Tickets" href="#"></b:navLink>
+			<b:navLink value="Compra de Productos" href="/comprarProductos/clienteProducto"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+
+	<br /><br />
+
+	<!--  Contenedor Principal -->
+	<b:container layout="fluid">
+
+		<b:panel icon="film" title="Compra de Ticket - Funciones Programadas"
+			look="primary" collapsible="false">
+
+			<!--  Tabla de Funciones -->
+			<b:column span="8" offset="2">
+
+				<h:panelGrid>
+					<b:dataTable id="dataFunciones"
+						value="#{beanSeleccionFuncion.lstFuncion}" var="f"
+						rendered="#{not empty beanSeleccionFuncion.lstFuncion}">
+						<b:dataTableColumn>
+							<f:facet name="header">CÓDIGO</f:facet>
+							<h:outputText value="#{f.codFuncion}"></h:outputText>
+						</b:dataTableColumn>
+
+
+						<b:dataTableColumn>
+							<f:facet name="header">PELÍCULA</f:facet>
+							<h:outputText value="#{f.nombrePelicula}"></h:outputText>
+						</b:dataTableColumn>
+
+
+						<b:dataTableColumn>
+							<f:facet name="header">SALA</f:facet>
+							<h:outputText value="#{f.sala}"></h:outputText>
+						</b:dataTableColumn>
+
+
+						<b:dataTableColumn>
+							<f:facet name="header">FECHA</f:facet>
+							<h:outputText value="#{f.fecha}"></h:outputText>
+						</b:dataTableColumn>
+
+
+						<b:dataTableColumn>
+							<f:facet name="header">HORA</f:facet>
+							<h:outputText value="#{f.hora}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">PRECIO (S/.)</f:facet>
+							<h:outputText value="#{f.precio}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">ACCIÓN</f:facet>
+							<h:form>
+								<b:commandButton
+									action="#{beanSeleccionFuncion.seleccionarFuncion}"
+									value="Seleccionar" look="primary">
+									<f:param name="funcionid" value="#{f.codFuncion}"></f:param>
+								</b:commandButton>
+							</h:form>
+						</b:dataTableColumn>
+
+					</b:dataTable>
+
+					<h:outputText value="No hay funciones registradas"
+						rendered="#{empty beanSeleccionFuncion.lstFuncion}"></h:outputText>
+
+				</h:panelGrid>
+			</b:column>
+		</b:panel>
+	</b:container>
+</h:body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<style>
+	.Bimage {
+		background-image:
+			url("https://es-mb.theepochtimes.com/assets/uploads/2018/06/GettyImages-961620930-700x420.jpg");
+	}
+	</style>
+	<title>Ticket - Selección de Cliente</title>
+</h:head>
+
+<h:body styleClass="Bimage">
+
+	<!--  Navbar -->
+	<b:navBar brand="Cine - UTP" brandHref="#" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Compra de Tickets" href="#"></b:navLink>
+			<b:navLink value="Compra de Productos" href="/comprarProductos/clienteProducto"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+
+	<br/>
+	
+	<!--  Contenedor Principal -->
+	<b:container layout="fluid">
+
+		<b:panel icon="user" title="Compra de Ticket - Clientes Registrados" look="success"
+			collapsible="false">
+
+			<!--  Tabla de Clientes -->
+			<b:column span="8" offset="2">
+				<h:panelGrid>
+					<b:dataTable id="dataClientes"
+						value="#{beanClienteTicket.lstCliente}" var="c"
+						rendered="#{not empty beanClienteTicket.lstCliente}">
+						<b:dataTableColumn>
+							<f:facet name="header">CÓDIGO</f:facet>
+							<h:outputText value="#{c.codigo}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">NOMBRE COMPLETO</f:facet>
+							<h:outputText value="#{c.nombreCompleto}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">DNI</f:facet>
+							<h:outputText value="#{c.dni}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">EMAIL</f:facet>
+							<h:outputText value="#{c.email}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">ACCIÓN</f:facet>
+							<h:form>
+								<b:commandButton
+									action="#{beanClienteTicket.seleccionarCliente}"
+									value="Seleccionar" look="success">
+									<f:param name="clienteid" value="#{c.codigo}"></f:param>
+								</b:commandButton>
+							</h:form>
+						</b:dataTableColumn>
+					</b:dataTable>
+
+					<h:outputText value="No hay clientes registrados"
+						rendered="#{empty beanClienteTicket.lstCliente}"></h:outputText>
+
+				</h:panelGrid>
+			</b:column>
+		</b:panel>
+	</b:container>
+</h:body>
+
+</html>

@@ -3,6 +3,7 @@ package cine_utp_jpa;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 /**
@@ -15,8 +16,6 @@ public class Empleado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator="seq_empleado") 
-	@SequenceGenerator(name="seq_empleado",sequenceName="seq_empleado", allocationSize=1)
 	@Column(name="cod_empleado")
 	private Integer codEmpleado;
 
@@ -39,6 +38,10 @@ public class Empleado implements Serializable {
 	private String nomEmp;
 
 	private BigDecimal salario;
+
+	//bi-directional many-to-one association to VentaProducto
+	@OneToMany(mappedBy="empleado")
+	private List<VentaProducto> ventaProductos;
 
 	public Empleado() {
 	}
@@ -105,6 +108,28 @@ public class Empleado implements Serializable {
 
 	public void setSalario(BigDecimal salario) {
 		this.salario = salario;
+	}
+
+	public List<VentaProducto> getVentaProductos() {
+		return this.ventaProductos;
+	}
+
+	public void setVentaProductos(List<VentaProducto> ventaProductos) {
+		this.ventaProductos = ventaProductos;
+	}
+
+	public VentaProducto addVentaProducto(VentaProducto ventaProducto) {
+		getVentaProductos().add(ventaProducto);
+		ventaProducto.setEmpleado(this);
+
+		return ventaProducto;
+	}
+
+	public VentaProducto removeVentaProducto(VentaProducto ventaProducto) {
+		getVentaProductos().remove(ventaProducto);
+		ventaProducto.setEmpleado(null);
+
+		return ventaProducto;
 	}
 
 }

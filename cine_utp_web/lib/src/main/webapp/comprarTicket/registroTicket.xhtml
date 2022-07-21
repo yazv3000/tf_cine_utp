@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<style>
+.Bimage {
+	background-image:
+		url("https://es-mb.theepochtimes.com/assets/uploads/2018/06/GettyImages-961620930-700x420.jpg");
+}
+</style>
+	<title>Ticket</title>
+</h:head>
+
+<h:body styleClass="Bimage">
+
+	<br />
+
+	<!--  Contenedor Principal -->
+	<b:container layout="fluid">
+
+		<b:panel icon="ticket" title="Compra de Ticket" look="success"
+			collapsible="false">
+
+			<b:column span="8" offset="4">
+				<!--  Formulario Resumen -->
+				<h:form>
+					<h1><b:label value="CLIENTE" severity="warning"/></h1>
+
+					<h:panelGrid columns="2">
+
+						<c:set var="c" value="#{beanCompraTicket.cliente}" scope="request" />
+
+						<label>Código de Cliente: </label>
+						<h:outputText value="#{c.codigo}"></h:outputText>
+
+						<label>Nombre completo: </label>
+						<h:outputText value="#{c.nombreCompleto}"></h:outputText>
+
+						<label>DNI: </label>
+						<h:outputText value="#{c.dni}"></h:outputText>
+
+						<label>Email: </label>
+						<h:outputText value="#{c.email}"></h:outputText>
+
+					</h:panelGrid>
+
+					<h1><b:label value="FUNCIÓN" severity="primary"/></h1>
+
+					<c:set var="f" value="#{beanCompraTicket.funcion}" scope="request" />
+
+					<h:panelGrid columns="2">
+
+						<label>Código de Función: </label>
+						<h:outputText value="#{f.codFuncion}"></h:outputText>
+
+						<label>Título de la Película: </label>
+						<h:outputText value="#{f.nombrePelicula}"></h:outputText>
+
+						<label>Sala: </label>
+						<h:outputText value="#{f.sala}"></h:outputText>
+
+						<label>Asiento: </label>
+						<h:outputText value="#{beanCompraTicket.asiento}"></h:outputText>
+
+						<label>Fecha: </label>
+						<h:outputText value="#{f.fecha}"></h:outputText>
+
+						<label>Hora de inicio: </label>
+						<h:outputText value="#{f.hora}"></h:outputText>
+
+						<label>Precio: </label>
+						<h:outputText value="S/.#{f.precio}"></h:outputText>
+
+					</h:panelGrid>
+
+					<b:commandButton iconAwesome="fa-save" value="Confirmar"
+						action="#{beanCompraTicket.confirmarCompra}" look="success">
+					</b:commandButton>
+
+				</h:form>
+				</b:column>
+		</b:panel>
+	</b:container>
+</h:body>
+</html>

@@ -14,8 +14,6 @@ public class Cargo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator="cod_cargo")
-	@SequenceGenerator(name="cod_cargo",sequenceName="cod_cargo", allocationSize=1)
 	@Column(name="cod_cargo")
 	private Integer codCargo;
 

@@ -10,7 +10,10 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Entrada.findAll", query="SELECT e FROM Entrada e")
+@NamedQueries({ 
+@NamedQuery(name="Entrada.findAll", query="SELECT e FROM Entrada e"),
+@NamedQuery(name="Entrada.findAsientosOcupados", query="SELECT e.asiento FROM Entrada e where e.funcion.codFuncion = :number")
+})
 public class Entrada implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,20 +23,24 @@ public class Entrada implements Serializable {
 	@SequenceGenerator(name="seq_tickets",sequenceName="seq_tickets", allocationSize=1)
 	private Integer codTicket;
 
-	private String asiento;
+	private int asiento;
 
 	@Column(name="cod_cajero")
 	private Integer codCajero;
 
-	@Column(name="cod_cliente")
-	private Integer codCliente;
-
-	@Column(name="cod_funcion")
-	private Integer codFuncion;
+	//bi-directional many-to-one association to Funcion
+	@ManyToOne
+	@JoinColumn(name="cod_cliente")
+	private Cliente cliente;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_compra")
 	private Date fechaCompra;
+
+	//bi-directional many-to-one association to Funcion
+	@ManyToOne
+	@JoinColumn(name="cod_funcion")
+	private Funcion funcion;
 
 	public Entrada() {
 	}
@@ -46,11 +53,11 @@ public class Entrada implements Serializable {
 		this.codTicket = codTicket;
 	}
 
-	public String getAsiento() {
+	public int getAsiento() {
 		return this.asiento;
 	}
 
-	public void setAsiento(String asiento) {
+	public void setAsiento(int asiento) {
 		this.asiento = asiento;
 	}
 
@@ -62,20 +69,12 @@ public class Entrada implements Serializable {
 		this.codCajero = codCajero;
 	}
 
-	public Integer getCodCliente() {
-		return this.codCliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setCodCliente(Integer codCliente) {
-		this.codCliente = codCliente;
-	}
-
-	public Integer getCodFuncion() {
-		return this.codFuncion;
-	}
-
-	public void setCodFuncion(Integer codFuncion) {
-		this.codFuncion = codFuncion;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Date getFechaCompra() {
@@ -84,6 +83,14 @@ public class Entrada implements Serializable {
 
 	public void setFechaCompra(Date fechaCompra) {
 		this.fechaCompra = fechaCompra;
+	}
+
+	public Funcion getFuncion() {
+		return this.funcion;
+	}
+
+	public void setFuncion(Funcion funcion) {
+		this.funcion = funcion;
 	}
 
 }

@@ -1,7 +1,11 @@
 package cine_utp_jpa;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -9,10 +13,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQueries({
-	@NamedQuery(name="Pelicula.consultarPorNombre", query="SELECT e FROM Pelicula e WHERE e.nomPeli like :cadena "),
-	@NamedQuery(name="Pelicula.findAll", query="SELECT p FROM Pelicula p")
-})
+@NamedQuery(name="Pelicula.findAll", query="SELECT p FROM Pelicula p")
 public class Pelicula implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,6 +36,7 @@ public class Pelicula implements Serializable {
 
 	private byte[] poster;
 
+	
 	public Pelicula() {
 	}
 
