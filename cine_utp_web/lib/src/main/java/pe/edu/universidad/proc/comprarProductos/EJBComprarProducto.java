@@ -115,6 +115,7 @@ public class EJBComprarProducto {
 		venta.getEmpleado().setCodEmpleado(v.getCodVendedor());
 		venta.setMontoTotal(BigDecimal.valueOf(v.getMonto()));
 		venta.setCantidad(v.getCantidad());
+		venta.setFechaVenta(v.getFechaVenta());
 		em.persist(venta);
 	}
     

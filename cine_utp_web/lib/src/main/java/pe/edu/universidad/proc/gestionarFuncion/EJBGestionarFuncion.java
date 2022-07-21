@@ -91,7 +91,7 @@ public class EJBGestionarFuncion {
     		dto.setCodigo(pelicula.getCodPelicula());
     		dto.setNombre(pelicula.getNomPeli());
     		dto.setDescripcion(pelicula.getDescripcion());
-    		dto.setTipo("Tipo: "+pelicula.getCodTipopeli());
+    		dto.setTipo(pelicula.getTipopeli().getNomTipopeli());
     		dto.setCalificacion(pelicula.getCodCalific());
     		dto.setDuracion(pelicula.getDuracion()/60+":"+pelicula.getDuracion()%60);
     		lstDto.add(dto);
@@ -139,6 +139,7 @@ public class EJBGestionarFuncion {
 		System.out.println("==============================");
 		
 		Funcion funcion = new Funcion();
+		funcion.setPelicula(new Pelicula());
 		funcion.getPelicula().setCodPelicula(dtoFuncionNueva.getCodPelicula());
 		funcion.setCodSala(dtoFuncionNueva.getCodSala());
 		funcion.setFechaFuncion(dtoFuncionNueva.getFecha());

@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
 
@@ -24,8 +26,10 @@ public class Pelicula implements Serializable {
 	@Column(name="cod_calific")
 	private String codCalific;
 
-	@Column(name="cod_tipopeli")
-	private Integer codTipopeli;
+	//bi-directional many-to-one association to Pelicula
+	@ManyToOne
+	@JoinColumn(name="cod_tipopeli")
+	private TipoPelicula tipopeli;
 
 	private String descripcion;
 
@@ -56,12 +60,12 @@ public class Pelicula implements Serializable {
 		this.codCalific = codCalific;
 	}
 
-	public Integer getCodTipopeli() {
-		return this.codTipopeli;
+	public TipoPelicula getTipopeli() {
+		return tipopeli;
 	}
 
-	public void setCodTipopeli(Integer codTipopeli) {
-		this.codTipopeli = codTipopeli;
+	public void setTipopeli(TipoPelicula tipopeli) {
+		this.tipopeli = tipopeli;
 	}
 
 	public String getDescripcion() {
