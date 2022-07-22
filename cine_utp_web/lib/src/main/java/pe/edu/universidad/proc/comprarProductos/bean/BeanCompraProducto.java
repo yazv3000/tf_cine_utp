@@ -21,6 +21,8 @@ public class BeanCompraProducto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+
+
 	@EJB
 	private EJBComprarProducto ejb;		// EJB se inyecta después de crear el objeto bean (después de llamar al constructor)
 	
@@ -33,15 +35,22 @@ public class BeanCompraProducto implements Serializable{
 		return "registroCompra";
 	}
 	
+	public double costoProducto(int cantidad){
+		double montoTotal = producto.getPrecio()*cantidad;
+		System.out.println(montoTotal);
+		return montoTotal;
+	}
+
 	public String confirmarCompra() {
 		DtoVentaNueva venta = new DtoVentaNueva();
 		venta.setCodCliente(cliente.getCodigo());
 		venta.setCodProducto(producto.getCodProducto());
-		venta.setCantidad(1);
+		venta.setCantidad(cantidad);
 		venta.setCodVendedor(2);
 		venta.setFechaVenta(new Date());
+		venta.setMonto(costoProducto(this.cantidad));
 		ejb.registrarVentaProducto(venta);
-		System.out.println("Venta exitosa");
+		
 		beanVentaProductos.inicializar();
 		return "ventasProducto";
 	}
@@ -58,5 +67,9 @@ public class BeanCompraProducto implements Serializable{
 	public void setProducto(DtoProductoConsulta producto) {
 		this.producto = producto;
 	}
-
+	
+	private int cantidad;
+	public int getCantidad() {		return cantidad;	}
+	public void setCantidad(int cantidad) {		this.cantidad = cantidad;	}	
+	
 }

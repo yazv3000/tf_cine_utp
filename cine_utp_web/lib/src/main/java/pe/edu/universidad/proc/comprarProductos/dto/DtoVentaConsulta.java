@@ -8,6 +8,7 @@ public class DtoVentaConsulta implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Atributos
+	private int codVenta;
 	private String nombreCliente;
 	private String nombreProducto;
 	private Date fecha;
@@ -18,6 +19,9 @@ public class DtoVentaConsulta implements Serializable {
 	public DtoVentaConsulta() {}
 
 	// Métodos Getter & Setter
+	public int getCodVenta() {		return codVenta;	}
+	public void setCodVenta(int codVenta) {		this.codVenta = codVenta;	}
+	
 	public String getNombreCliente() {		return nombreCliente;	}
 	public void setNombreCliente(String nombreCliente) {		this.nombreCliente = nombreCliente;	}
 

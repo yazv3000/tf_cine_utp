@@ -29,13 +29,14 @@
 	<!--  Contenedor Principal -->
 	<b:container layout="fluid">
 
-		<b:panel icon="film" title="Compra de Productos"
+		<b:panel icon="apple" title="Compra de Productos"
 			look="primary" collapsible="false">
 
 			<!--  Tabla de Funciones -->
 			<b:column span="8" offset="2">
 
 				<h:panelGrid>
+				<h:form>
 					<b:dataTable id="dataFunciones"
 						value="#{beanSeleccionProducto.lstProducto}" var="p"
 						rendered="#{not empty beanSeleccionProducto.lstProducto}">
@@ -58,23 +59,29 @@
 
 
 						<b:dataTableColumn>
-							<f:facet name="header">PRECIO (S/.)</f:facet>
+							<f:facet name="header">PRECIO UNITARIO(S/.)</f:facet>
 							<h:outputText value="#{p.precio}"></h:outputText>
+						</b:dataTableColumn>
+						
+						
+						<b:dataTableColumn>
+							<f:facet name="header">CANTIDAD (S/.)</f:facet>
+							<b:inputText value="#{beanSeleccionProducto.cantidad}"></b:inputText>
 						</b:dataTableColumn>
 
 						<b:dataTableColumn>
 							<f:facet name="header">ACCIÓN</f:facet>
-							<h:form>
+							
 								<b:commandButton
 									action="#{beanSeleccionProducto.seleccionarProducto}"
 									value="Seleccionar" look="primary">
 									<f:param name="productoid" value="#{p.codProducto}"></f:param>
+									<f:param name="cant" value="#{beanSeleccionProducto.cantidad}"></f:param>
 								</b:commandButton>
-							</h:form>
 						</b:dataTableColumn>
-
+					
 					</b:dataTable>
-
+					</h:form>
 					<h:outputText value="No hay productos registradas"
 						rendered="#{empty beanSeleccionProducto.lstProducto}"></h:outputText>
 

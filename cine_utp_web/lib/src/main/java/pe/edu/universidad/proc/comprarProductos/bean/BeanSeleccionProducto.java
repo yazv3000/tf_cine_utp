@@ -48,11 +48,18 @@ public class BeanSeleccionProducto implements Serializable{
     	int idProducto = Integer.parseInt(map.get("productoid"));
     	System.out.println("Se ha seleccionado el producto: "+idProducto);
     	beanCompraProducto.setProducto(ejb.consultarProductoPorId(idProducto));
+    	beanCompraProducto.setCantidad(this.cantidad);
+		System.out.println(this.cantidad+"---------------cantidad");
 		return beanCompraProducto.cargarDetalle();
 	}
 	
 	public String cargarProductos() {
 		return "seleccionProducto";
 	}
+	
+	// Propiedades
+	private int cantidad;
+	public int getCantidad() {		return cantidad;	}
+	public void setCantidad(int cantidad) {	this.cantidad = cantidad;}
 	
 }

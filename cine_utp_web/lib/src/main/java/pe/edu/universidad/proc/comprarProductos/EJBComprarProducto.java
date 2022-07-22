@@ -84,12 +84,13 @@ public class EJBComprarProducto {
     @Path("consultarVentasTodos")
     public List<DtoVentaConsulta> consultarVentasTodos() {
     	
-    	Query query = em.createNamedQuery("Entrada.findAll");
+    	Query query = em.createNamedQuery("VentaProducto.findAll");
     	List<VentaProducto> lst = query.getResultList();
     	List<DtoVentaConsulta> lstDto = new ArrayList<DtoVentaConsulta>();
     	
     	for (VentaProducto venta : lst) {
     		DtoVentaConsulta dtoVenta = new DtoVentaConsulta();
+    		dtoVenta.setCodVenta(venta.getCodVenta());
     		dtoVenta.setNombreCliente(venta.getCliente().getNomCl()+" "+venta.getCliente().getApeCl());
     		dtoVenta.setNombreProducto(venta.getProducto().getNombre());
     		dtoVenta.setCantidad(venta.getCantidad());
@@ -106,6 +107,7 @@ public class EJBComprarProducto {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
 	public void registrarVentaProducto(DtoVentaNueva v) {
+    	
 		VentaProducto venta = new VentaProducto();
 		venta.setCliente(new Cliente());
 		venta.getCliente().setCodCliente(v.getCodCliente());
