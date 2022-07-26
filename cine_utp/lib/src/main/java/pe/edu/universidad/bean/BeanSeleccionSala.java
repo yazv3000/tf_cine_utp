@@ -12,7 +12,9 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import cine_utp_jpa.HorarioSala;
@@ -29,6 +31,9 @@ public class BeanSeleccionSala implements Serializable {
 	private EJBGesionSala ejb;
 	private List<Sala> lstSalas;
 	
+
+	@Inject
+	private BeanSeleccionHorario beanSeleccionHorario;
 	public BeanSeleccionSala() {
 		
 	}
@@ -38,12 +43,15 @@ public class BeanSeleccionSala implements Serializable {
 		lstSalas = ejb.obtenerDatosSala();
 		
 	}
-	
-	
+
 	
 	public String siguientePagina() {
+		Map<String, String> map = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		beanSeleccionHorario.setCodSala(Integer.parseInt(map.get("salaId")));
+    	System.out.println("Codigo Sala: " + Integer.parseInt(map.get("salaId")));
 		return "SalaHorarios";
 	}
+
 
 	public List<Sala> getLstSalas() {
 		return lstSalas;
@@ -52,6 +60,7 @@ public class BeanSeleccionSala implements Serializable {
 	public void setLstSalas(List<Sala> lstSalas) {
 		this.lstSalas = lstSalas;
 	}
+	
 	
 
 }

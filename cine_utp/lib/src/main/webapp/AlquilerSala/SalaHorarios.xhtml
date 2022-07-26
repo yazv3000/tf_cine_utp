@@ -32,10 +32,11 @@
 						<b:panel title="Horarios Disponibles" look="primary">
 							<b:panelGrid columns="2">
 								<h:outputText value="Hora: "></h:outputText>
-								<b:selectOneMenu  select2="true">
+								<b:selectOneMenu value="#{beanSeleccionHorario.reserva.codHorario}"  select2="true">
 									<f:selectItems value="#{beanSeleccionHorario.lst}" />
 								</b:selectOneMenu>
 								<br />
+								<b:commandButton action="#{beanSeleccionHorario.insertarReserva}" value="Registrar" look="success"/>
 							</b:panelGrid>
 						</b:panel>
 					</b:column>

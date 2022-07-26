@@ -19,14 +19,12 @@
 			<b:row>
 				<b:column span="6" offset="3">
 					<b:panel title="Ingrese sus datos" look="primary">
-						<b:panelGrid columns="1">
-								
-								<b:inputText value="#{beanClienteSala.dtoReservaCliente.nombres}" placeholder="Nombres" required="true"  colMd="10" />
-								<b:inputText value="#{beanClienteSala.dtoReservaCliente.apellidos}" placeholder="Apellidos" required="true"  colMd="10" />	
-								<b:inputText value="#{beanClienteSala.dtoReservaCliente.dni}" placeholder="DNI" required="true"  colMd="10" />	
-								<b:inputText value="#{beanClienteSala.dtoReservaCliente.telefono}" placeholder="Telefono" required="true"  colMd="10" />
-								<b:inputText value="#{beanClienteSala.dtoReservaCliente.correo}" placeholder="Correo" required="true"  colMd="10" />
-										
+						<b:panelGrid columns="1">	
+								<b:inputText value="#{beanSeleccionHorario.reserva.nombres}" placeholder="Nombres" required="true"  colMd="10" />
+								<b:inputText value="#{beanSeleccionHorario.reserva.apellidos}" placeholder="Apellidos" required="true"  colMd="10" />	
+								<b:inputText value="#{beanSeleccionHorario.reserva.dni}" placeholder="DNI" required="true"  colMd="10" />	
+								<b:inputText value="#{beanSeleccionHorario.reserva.telefono}" placeholder="Telefono" required="true"  colMd="10" />
+								<b:inputText value="#{beanSeleccionHorario.reserva.correo}" placeholder="Correo" required="true"  colMd="10" />		
 							</b:panelGrid>	
 					</b:panel>
 				</b:column>

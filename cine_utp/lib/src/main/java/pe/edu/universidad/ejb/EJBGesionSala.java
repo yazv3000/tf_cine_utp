@@ -26,11 +26,14 @@ public class EJBGesionSala {
 	
 	@PersistenceContext(unitName = "cine_utp_jpa")
 	private EntityManager em;
+	private int codHorario;
+
     /**
      * Default constructor. 
      */
     public EJBGesionSala() {
         // TODO Auto-generated constructor stub
+
     }
 
 	public List<Sala> obtenerDatosSala() {
@@ -66,10 +69,30 @@ public class EJBGesionSala {
 		return horarioMap;
 	}
 	
+	public HorarioSala ConsultarHorarioSala() {
+		HorarioSala horarioSala = new HorarioSala();
+		for (int i = 0; i < listadoDeHorasPorFecha().size(); i++) {
+			if (listadoDeHorasPorFecha().get(i).getCodigo() == codHorario) {
+				horarioSala = listadoDeHorasPorFecha().get(i);
+				break;
+			}
+		}
+		return horarioSala;
+	}
+	
+	public Sala ConsultarSala() {
+		Sala sala = new Sala();
+		for (int i = 0; i <  obtenerDatosSala().size(); i++) {
+			if ( sala.getCodSala() == obtenerDatosSala().get(i).getCodSala()) {
+				sala = obtenerDatosSala().get(i);
+				break;
+			}
+		}
+		return sala;
+	}
+	
 	public void reservaDeSala(Reserva r ) {
-		//System.out.println("Nombre: " + r.getNombres());
-		//System.out.println("Codigo del Horario---: " + r.getCodHorario());
-		//em.persist(r);
+		em.persist(r);
 	}
 	
 

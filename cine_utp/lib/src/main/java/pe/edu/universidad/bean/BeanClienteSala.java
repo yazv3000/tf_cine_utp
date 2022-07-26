@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import cine_utp_jpa.HorarioSala;
@@ -29,8 +30,7 @@ public class BeanClienteSala implements Serializable {
 	@EJB
 	private EJBGesionSala ejb;
 	private DtoReservaCliente dtoReservaCliente;
-	
-	
+
 	
 	public BeanClienteSala() {
 		dtoReservaCliente = new DtoReservaCliente();

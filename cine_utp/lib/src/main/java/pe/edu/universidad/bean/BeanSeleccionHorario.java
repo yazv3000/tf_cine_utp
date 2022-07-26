@@ -31,9 +31,13 @@ public class BeanSeleccionHorario implements Serializable {
 	private EJBGesionSala ejb;
 	private List<SelectItem> lst;
 	private Date fechaDisponible;	
+	private int codSala;
+	
+	private Reserva reserva;
+	
 	
 	public BeanSeleccionHorario() {
-		
+		reserva = new Reserva();
 	}
 	
 	@PostConstruct
@@ -44,9 +48,7 @@ public class BeanSeleccionHorario implements Serializable {
 
 	public List<SelectItem> FiltrarHorario() {
 		
-		Map<String, String> map = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-    	int codSala = Integer.parseInt(map.get("salaId"));
-		System.out.println(map.get("salaId") + " <----  valor ");
+		
 		List<HorarioSala> horario = ejb.listadoDeHorasPorFecha();
 		lst = new ArrayList<SelectItem>();
 		for (HorarioSala horarioSala : horario) {
@@ -62,7 +64,7 @@ public class BeanSeleccionHorario implements Serializable {
 		}
 		
 		for (SelectItem l : lst) {
-			System.out.println(l.getValue());
+			System.out.println(l.getValue() + " Hora" +  l.getLabel());
 		}
 		return lst;
 	}
@@ -72,7 +74,17 @@ public class BeanSeleccionHorario implements Serializable {
 		return "SalaHorarios";
 	}
 	
+	public String insertarReserva() {
+		System.out.println("Hello ");
+		System.out.println(reserva.getCodHorario() + " Codigo Horario <-------------");
+		System.out.println(reserva.getNombres() + " Nombres <-------------");
+		ejb.reservaDeSala(reserva);
+		return "ResumenAlquiler";
+	}
 	
+	public String siguientePagina() {
+		return "ResumenAlquiler";
+	}
 
 	public List<SelectItem> getLst() {
 		return lst;
@@ -89,4 +101,21 @@ public class BeanSeleccionHorario implements Serializable {
 	public void setFechaDisponible(Date fechaDisponible) {
 		this.fechaDisponible = fechaDisponible;
 	}
+
+	public int getCodSala() {
+		return codSala;
+	}
+
+	public void setCodSala(int codSala) {
+		this.codSala = codSala;
+	}
+
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+
 }
