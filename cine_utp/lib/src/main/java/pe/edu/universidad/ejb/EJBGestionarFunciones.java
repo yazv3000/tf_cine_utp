@@ -121,6 +121,8 @@ public class EJBGestionarFunciones {
 		funcion.setPrecio(BigDecimal.valueOf(dtoFuncionNueva.getPrecio()));
 		funcion.setHoraInicio(new Time(dtoFuncionNueva.getFecha().getTime()));
 		em.persist(funcion);
-		
 	}
+	
+	
+
 }

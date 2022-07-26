@@ -1,0 +1,745 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.2
+
+-- Started on 2022-07-26 00:03:48
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 210 (class 1259 OID 22701)
+-- Name: calificacion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.calificacion (
+    cod_calific character(3) NOT NULL,
+    descr_calific character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.calificacion OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 22723)
+-- Name: cargo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cargo (
+    cod_cargo integer NOT NULL,
+    nom_cargo character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.cargo OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 22728)
+-- Name: cliente; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cliente (
+    cod_cliente integer NOT NULL,
+    nom_cl character varying(100) NOT NULL,
+    ape_cl character varying(100) NOT NULL,
+    dni_cl character varying(8) NOT NULL,
+    email_cl character varying(200) NOT NULL,
+    direccion_cl text NOT NULL,
+    foto_cliente bytea
+);
+
+
+ALTER TABLE public.cliente OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 22735)
+-- Name: empleado; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.empleado (
+    cod_empleado integer NOT NULL,
+    nom_emp character varying(100) NOT NULL,
+    ape_emp character varying(100) NOT NULL,
+    cod_cargo integer NOT NULL,
+    email_emp character varying(200) NOT NULL,
+    direccion_emp text NOT NULL,
+    salario numeric NOT NULL,
+    foto_emp bytea
+);
+
+
+ALTER TABLE public.empleado OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 22768)
+-- Name: entrada; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.entrada (
+    cod_ticket integer NOT NULL,
+    cod_funcion integer NOT NULL,
+    cod_cliente integer NOT NULL,
+    cod_cajero integer NOT NULL,
+    fecha_compra date DEFAULT CURRENT_DATE NOT NULL,
+    asiento character(4) NOT NULL
+);
+
+
+ALTER TABLE public.entrada OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 22752)
+-- Name: funcion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.funcion (
+    cod_funcion integer NOT NULL,
+    cod_pelicula integer NOT NULL,
+    cod_sala integer NOT NULL,
+    fecha_funcion date DEFAULT CURRENT_DATE NOT NULL,
+    hora_inicio time without time zone NOT NULL,
+    precio numeric
+);
+
+
+ALTER TABLE public.funcion OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 50952)
+-- Name: horario_sala; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.horario_sala (
+    codigo integer NOT NULL,
+    cod_sala integer,
+    fecha date,
+    hora time without time zone,
+    precio numeric,
+    estado character varying(20)
+);
+
+
+ALTER TABLE public.horario_sala OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 22706)
+-- Name: pelicula; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.pelicula (
+    cod_pelicula integer NOT NULL,
+    nom_peli character varying(200) NOT NULL,
+    cod_tipopeli integer NOT NULL,
+    descripcion text,
+    duracion integer NOT NULL,
+    cod_calific character(3) NOT NULL,
+    poster bytea
+);
+
+
+ALTER TABLE public.pelicula OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 50964)
+-- Name: producto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.producto (
+    cod_producto integer NOT NULL,
+    nombre character varying(50) NOT NULL,
+    precio integer NOT NULL,
+    tipo character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.producto OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 50997)
+-- Name: reserva; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.reserva (
+    codigo integer NOT NULL,
+    cod_horario integer,
+    nombres character varying(100),
+    apellidos character varying(100),
+    dni character varying(10),
+    telefono character varying(10),
+    correo character varying(100)
+);
+
+
+ALTER TABLE public.reserva OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 22747)
+-- Name: sala; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.sala (
+    cod_sala integer NOT NULL,
+    capacidad integer NOT NULL,
+    precio numeric
+);
+
+
+ALTER TABLE public.sala OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 50944)
+-- Name: seq_funciones; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.seq_funciones
+    START WITH 1000
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_funciones OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 51007)
+-- Name: seq_reserva; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.seq_reserva
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_reserva OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 22696)
+-- Name: tipo_pelicula; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tipo_pelicula (
+    cod_tipopeli integer NOT NULL,
+    nom_tipopeli character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.tipo_pelicula OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 50969)
+-- Name: venta_producto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.venta_producto (
+    cod_venta integer NOT NULL,
+    cod_cliente integer NOT NULL,
+    cod_vendedor integer NOT NULL,
+    cod_producto integer NOT NULL,
+    fecha_venta date NOT NULL,
+    cantidad integer NOT NULL,
+    monto_total numeric NOT NULL
+);
+
+
+ALTER TABLE public.venta_producto OWNER TO postgres;
+
+--
+-- TOC entry 3394 (class 0 OID 22701)
+-- Dependencies: 210
+-- Data for Name: calificacion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.calificacion VALUES ('APT', 'Apta para todos los públicos');
+INSERT INTO public.calificacion VALUES ('+7 ', 'No recomendada para menores de 7 años');
+INSERT INTO public.calificacion VALUES ('+13', 'No recomendada para menores de 13 años');
+INSERT INTO public.calificacion VALUES ('+16', 'No recomendada para menores de 16 años');
+INSERT INTO public.calificacion VALUES ('+18', 'No recomendada para menores de 18 años');
+
+
+--
+-- TOC entry 3396 (class 0 OID 22723)
+-- Dependencies: 212
+-- Data for Name: cargo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.cargo VALUES (1, 'Cajero de boletería');
+INSERT INTO public.cargo VALUES (2, 'Concesionario');
+INSERT INTO public.cargo VALUES (3, 'Encargado de sala');
+INSERT INTO public.cargo VALUES (4, 'Proyectista');
+INSERT INTO public.cargo VALUES (5, 'Administrativo');
+
+
+--
+-- TOC entry 3397 (class 0 OID 22728)
+-- Dependencies: 213
+-- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.cliente VALUES (1, 'Luis', 'Gamarra Alcantara', '61614803', 'alcangama@gmail.com', 'Av. Parra Nº 313', NULL);
+INSERT INTO public.cliente VALUES (2, 'Paul', 'Gutierrez Manrique', '28423490', 'gutimanriq@gmail.com', 'Av. Perú Nº 232', NULL);
+INSERT INTO public.cliente VALUES (3, 'Juan', 'Martinez Lopez', '48804278', 'martlup@gmail.com', 'Av. Argentina Nº 221', NULL);
+INSERT INTO public.cliente VALUES (4, 'Leticia', 'Perez Alcantara', '39840290', 'leticia.martinez@gmail.com', 'Urb. Casa Blanca B-8', NULL);
+INSERT INTO public.cliente VALUES (5, 'Eduardo', 'Vallejo Pereida', '25481396', 'eduardo.vallejo@gmail.com', 'Av. Paisajista 407', NULL);
+INSERT INTO public.cliente VALUES (6, 'Nicolas', 'Morales Guillen', '62463044', 'nicoles.morales@gmail.com', 'Urb. Zafiro, B-11', NULL);
+INSERT INTO public.cliente VALUES (7, 'Adriana', 'Jordan Rodriguez', '48375787', 'adriana.jordan@gmail.com', 'Av. Porongoche, 606', NULL);
+INSERT INTO public.cliente VALUES (8, 'William', 'Hammond', '78948905', 'willian.hammond@gmail.com', 'Calle Cesar Vallejo', NULL);
+INSERT INTO public.cliente VALUES (9, 'Tookha', 'Garcia Ghoul', '77952485', 'tookhan.gacia@gmail.com', 'Calle 28 de julio,503', NULL);
+INSERT INTO public.cliente VALUES (10, 'Melman', 'Schwimmer', '64878851', 'melman.scwimmer@gmail.com', 'Urb. Los cipreses, A-9', NULL);
+
+
+--
+-- TOC entry 3398 (class 0 OID 22735)
+-- Dependencies: 214
+-- Data for Name: empleado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.empleado VALUES (0, 'Cajero', 'Online', 1, 'tickets.upt@gmail.com', 'Av. Tacna y Arica 160', 0, NULL);
+INSERT INTO public.empleado VALUES (1, 'Guillermo', 'Smith Coppola', 1, 'smithgil@gmail.com', 'Av. Los Angeles Nº 542', 1500, NULL);
+INSERT INTO public.empleado VALUES (2, 'Eduardo', 'Vallejo Pereira', 2, 'perava@gmail.com', 'Av. Las Vegas Nº 123', 1000, NULL);
+INSERT INTO public.empleado VALUES (3, 'Adriana', 'Jordan Rodriguez', 5, 'rojodri@gmail.com', 'Av. Las Malvinas Nº 213', 1700, NULL);
+INSERT INTO public.empleado VALUES (4, 'Andrea', 'Valdivia Segalez', 2, 'andrea.valdivia@gmail.com', 'Calle Amauta, 138', 1000, NULL);
+INSERT INTO public.empleado VALUES (5, 'Mario', 'Diaz Torres', 5, 'maria.diaz@gmail.com', 'Av. Los Acres, 64', 1700, NULL);
+INSERT INTO public.empleado VALUES (6, 'Melman', 'Schwimmer', 2, 'melman.shwimmer@gmail.com', 'Urb. Los cipreses, A-9', 1000, NULL);
+INSERT INTO public.empleado VALUES (7, 'Jennifer', 'Anco Mamani', 1, 'jennifer.anco@gmail.com', 'Av. Independecia, 71', 1500, NULL);
+INSERT INTO public.empleado VALUES (8, 'Alex', 'Cruz Leon', 2, 'alex.cruz@gmail.com', 'Urb. Los cipreses, 71', 1000, NULL);
+INSERT INTO public.empleado VALUES (9, 'Jose', 'Perez Rodriguez', 5, 'jose.perez@gmail.com', 'Av. Argentina, 256', 1700, NULL);
+INSERT INTO public.empleado VALUES (10, 'Juan Jose', 'Molina Quispe', 2, 'juan.molina@gmail.com', 'Calle Tahuaycani 312', 1000, NULL);
+
+
+--
+-- TOC entry 3401 (class 0 OID 22768)
+-- Dependencies: 217
+-- Data for Name: entrada; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3400 (class 0 OID 22752)
+-- Dependencies: 216
+-- Data for Name: funcion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.funcion VALUES (1, 1, 2, '2022-06-04', '08:00:00', 9.5);
+INSERT INTO public.funcion VALUES (2, 3, 4, '2022-06-04', '07:00:00', 9.5);
+INSERT INTO public.funcion VALUES (3, 5, 7, '2022-06-05', '09:00:00', 9.5);
+INSERT INTO public.funcion VALUES (4, 7, 1, '2022-06-05', '16:00:00', 9.5);
+INSERT INTO public.funcion VALUES (5, 5, 3, '2022-06-07', '20:30:00', 9.5);
+INSERT INTO public.funcion VALUES (6, 1, 2, '2022-06-07', '17:00:00', 9.5);
+INSERT INTO public.funcion VALUES (7, 3, 4, '2022-06-07', '15:00:00', 9.5);
+INSERT INTO public.funcion VALUES (8, 5, 7, '2022-06-05', '12:00:00', 9.5);
+INSERT INTO public.funcion VALUES (9, 7, 1, '2022-06-08', '16:00:00', 9.5);
+INSERT INTO public.funcion VALUES (10, 5, 3, '2022-06-09', '20:30:00', 9.5);
+INSERT INTO public.funcion VALUES (11, 8, 8, '2022-06-07', '17:00:00', 9.5);
+INSERT INTO public.funcion VALUES (12, 7, 5, '2022-06-10', '13:00:00', 9.5);
+INSERT INTO public.funcion VALUES (13, 9, 4, '2022-06-12', '18:00:00', 9.5);
+INSERT INTO public.funcion VALUES (14, 7, 1, '2022-06-12', '20:00:00', 9.5);
+INSERT INTO public.funcion VALUES (15, 9, 3, '2022-06-10', '20:30:00', 9.5);
+INSERT INTO public.funcion VALUES (16, 4, 8, '2022-06-20', '11:00:00', 9.5);
+INSERT INTO public.funcion VALUES (17, 3, 4, '2022-06-12', '13:00:00', 9.5);
+INSERT INTO public.funcion VALUES (18, 4, 4, '2022-06-12', '12:00:00', 9.5);
+INSERT INTO public.funcion VALUES (19, 1, 5, '2022-06-15', '24:00:00', 9.5);
+INSERT INTO public.funcion VALUES (20, 5, 5, '2022-06-10', '20:30:00', 9.5);
+INSERT INTO public.funcion VALUES (100, 1, 1, '2022-07-06', '06:17:00', 50.0);
+INSERT INTO public.funcion VALUES (1000, 5, 3, '2022-07-06', '08:00:00', 12.0);
+INSERT INTO public.funcion VALUES (1001, 2, 6, '2022-07-21', '10:00:00', 54.0);
+INSERT INTO public.funcion VALUES (1002, 2, 6, '2022-07-21', '10:00:00', 54.0);
+INSERT INTO public.funcion VALUES (1003, 2, 6, '2022-07-21', '10:00:00', 54.0);
+INSERT INTO public.funcion VALUES (1004, 2, 6, '2022-07-21', '10:00:00', 100.0);
+INSERT INTO public.funcion VALUES (1005, 7, 8, '2022-07-21', '10:00:00', 13.5);
+INSERT INTO public.funcion VALUES (1006, 1, 1, '2022-07-13', '10:42:00', 0.0);
+INSERT INTO public.funcion VALUES (1007, 1, 1, '2022-07-13', '10:42:00', 15.0);
+INSERT INTO public.funcion VALUES (1008, 4, 4, '2022-07-13', '10:42:00', 25.6);
+INSERT INTO public.funcion VALUES (1009, 4, 4, '2022-07-13', '10:42:00', 25.6);
+INSERT INTO public.funcion VALUES (1010, 4, 4, '2022-07-13', '10:42:00', 25.6);
+INSERT INTO public.funcion VALUES (1011, 4, 4, '2022-07-13', '10:42:00', 25.6);
+INSERT INTO public.funcion VALUES (1012, 4, 4, '2022-07-13', '10:42:00', 25.6);
+
+
+--
+-- TOC entry 3403 (class 0 OID 50952)
+-- Dependencies: 219
+-- Data for Name: horario_sala; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.horario_sala VALUES (1, 1, '2022-07-28', '07:00:00', 300, 'Disponible');
+INSERT INTO public.horario_sala VALUES (2, 1, '2022-07-28', '08:00:00', 300, 'Disponible');
+INSERT INTO public.horario_sala VALUES (3, 1, '2022-07-28', '09:00:00', 300, 'Disponible');
+INSERT INTO public.horario_sala VALUES (4, 1, '2022-07-28', '10:00:00', 300, 'Disponible');
+INSERT INTO public.horario_sala VALUES (5, 2, '2022-07-28', '07:00:00', 350, 'Disponible');
+INSERT INTO public.horario_sala VALUES (6, 4, '2022-07-28', '11:00:00', 300, 'Disponible');
+INSERT INTO public.horario_sala VALUES (7, 4, '2022-07-28', '12:00:00', 350, 'Disponible');
+
+
+--
+-- TOC entry 3395 (class 0 OID 22706)
+-- Dependencies: 211
+-- Data for Name: pelicula; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.pelicula VALUES (1, 'Toy Story', 3, 'Los juguetes de Andy, un niño de seis años, temen que un nuevo regalo les sustituya en el corazón de su dueño. Woody, un vaquero que ha sido hasta ahora el juguete favorito, trata de tranquilizarlos hasta que aparece Buzz Lightyear.', 80, 'APT', NULL);
+INSERT INTO public.pelicula VALUES (2, 'The Avengers', 1, 'El director de la Agencia SHIELD decide reclutar a un equipo para salvar al mundo de un desastre casi seguro cuando un enemigo inesperado surge como una gran amenaza para la seguridad mundial.', 143, '+13', NULL);
+INSERT INTO public.pelicula VALUES (3, 'Bohemian Rhapsody', 9, 'Londres, 1970. El joven Farrokh, Freddie para los amigos, trabaja en el aeropuerto, estudia diseño gráfico y escribe canciones. Un día, tras escuchar al grupo Smile en un bar, se ofrece como cantante de la banda al enterarse de que se han quedado sin vocalista.', 134, '+13', NULL);
+INSERT INTO public.pelicula VALUES (4, 'Volver al Futuro', 5, 'sdf', 145, '+13', NULL);
+INSERT INTO public.pelicula VALUES (5, 'El Señor de los anillos', 7, 'sdf', 230, '+13', NULL);
+INSERT INTO public.pelicula VALUES (6, 'El hobbit', 7, 'sdf', 245, '+13', NULL);
+INSERT INTO public.pelicula VALUES (7, 'Avatar', 1, 'sdf', 160, '+13', NULL);
+INSERT INTO public.pelicula VALUES (8, 'Donnie Darko', 5, 'sdf', 135, '+13', NULL);
+INSERT INTO public.pelicula VALUES (9, 'Madagascar', 3, 'sdf', 138, 'APT', NULL);
+INSERT INTO public.pelicula VALUES (10, 'Saw', 4, 'sdf', 133, '+18', NULL);
+
+
+--
+-- TOC entry 3404 (class 0 OID 50964)
+-- Dependencies: 220
+-- Data for Name: producto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.producto VALUES (1, 'Gaseosa', 10, 'unitario');
+INSERT INTO public.producto VALUES (2, 'Palomitas de Maiz', 15, 'unitario');
+INSERT INTO public.producto VALUES (3, 'Chocolate', 8, 'unitario');
+INSERT INTO public.producto VALUES (4, 'Refresco', 12, 'unitario');
+INSERT INTO public.producto VALUES (5, 'Vizzio', 5, 'unitario');
+INSERT INTO public.producto VALUES (6, '1 Canchita Gigante + 2 Bebidas (21oz)', 40, 'combo');
+INSERT INTO public.producto VALUES (7, '2 Canchita Gigante + 2 Bebidas (21oz) ', 45, 'combo');
+INSERT INTO public.producto VALUES (8, '1 Canchita Grande + 2 Bebidas Medianas', 30, 'combo');
+INSERT INTO public.producto VALUES (9, '1 Canchita Grande + 2 Bebidas Pequeñas', 25, 'combo');
+INSERT INTO public.producto VALUES (10, '1 Canchita Gigante + 1 Bebidas Medianas', 20, 'combo');
+
+
+--
+-- TOC entry 3406 (class 0 OID 50997)
+-- Dependencies: 222
+-- Data for Name: reserva; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.reserva VALUES (1, NULL, 'Paul', 'Segales ', '5452152', '15415', '5sd45f4sdg');
+INSERT INTO public.reserva VALUES (2, NULL, '563', '45', '453', '453', '45345');
+INSERT INTO public.reserva VALUES (3, NULL, '414', '414', '141', '41', '141');
+
+
+--
+-- TOC entry 3399 (class 0 OID 22747)
+-- Dependencies: 215
+-- Data for Name: sala; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.sala VALUES (1, 30, 300);
+INSERT INTO public.sala VALUES (2, 25, 270);
+INSERT INTO public.sala VALUES (3, 40, 350);
+INSERT INTO public.sala VALUES (4, 26, 260);
+INSERT INTO public.sala VALUES (5, 50, 400);
+INSERT INTO public.sala VALUES (6, 30, 300);
+INSERT INTO public.sala VALUES (7, 40, 350);
+INSERT INTO public.sala VALUES (8, 25, 270);
+
+
+--
+-- TOC entry 3393 (class 0 OID 22696)
+-- Dependencies: 209
+-- Data for Name: tipo_pelicula; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.tipo_pelicula VALUES (1, 'Acción');
+INSERT INTO public.tipo_pelicula VALUES (2, 'Animación');
+INSERT INTO public.tipo_pelicula VALUES (3, 'Aventuras');
+INSERT INTO public.tipo_pelicula VALUES (4, 'Bélica');
+INSERT INTO public.tipo_pelicula VALUES (5, 'Ciencia Ficción');
+INSERT INTO public.tipo_pelicula VALUES (6, 'Comedia');
+INSERT INTO public.tipo_pelicula VALUES (7, 'Crimen');
+INSERT INTO public.tipo_pelicula VALUES (8, 'Documentales');
+INSERT INTO public.tipo_pelicula VALUES (9, 'Drama');
+INSERT INTO public.tipo_pelicula VALUES (10, 'Fantasía');
+INSERT INTO public.tipo_pelicula VALUES (11, 'Infantil');
+INSERT INTO public.tipo_pelicula VALUES (12, 'Musical');
+INSERT INTO public.tipo_pelicula VALUES (13, 'Terror');
+INSERT INTO public.tipo_pelicula VALUES (14, 'Suspenso');
+INSERT INTO public.tipo_pelicula VALUES (15, 'Romance');
+INSERT INTO public.tipo_pelicula VALUES (16, 'Western');
+
+
+--
+-- TOC entry 3405 (class 0 OID 50969)
+-- Dependencies: 221
+-- Data for Name: venta_producto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3413 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: seq_funciones; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.seq_funciones', 1012, true);
+
+
+--
+-- TOC entry 3414 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: seq_reserva; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.seq_reserva', 3, true);
+
+
+--
+-- TOC entry 3240 (class 2606 OID 51001)
+-- Name: reserva Reserva_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reserva
+    ADD CONSTRAINT "Reserva_pkey" PRIMARY KEY (codigo);
+
+
+--
+-- TOC entry 3218 (class 2606 OID 22705)
+-- Name: calificacion calificacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calificacion
+    ADD CONSTRAINT calificacion_pkey PRIMARY KEY (cod_calific);
+
+
+--
+-- TOC entry 3222 (class 2606 OID 22727)
+-- Name: cargo cargo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cargo
+    ADD CONSTRAINT cargo_pkey PRIMARY KEY (cod_cargo);
+
+
+--
+-- TOC entry 3224 (class 2606 OID 22734)
+-- Name: cliente cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cliente
+    ADD CONSTRAINT cliente_pkey PRIMARY KEY (cod_cliente);
+
+
+--
+-- TOC entry 3226 (class 2606 OID 22741)
+-- Name: empleado empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.empleado
+    ADD CONSTRAINT empleado_pkey PRIMARY KEY (cod_empleado);
+
+
+--
+-- TOC entry 3232 (class 2606 OID 22773)
+-- Name: entrada entrada_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.entrada
+    ADD CONSTRAINT entrada_pkey PRIMARY KEY (cod_ticket);
+
+
+--
+-- TOC entry 3230 (class 2606 OID 22757)
+-- Name: funcion funcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.funcion
+    ADD CONSTRAINT funcion_pkey PRIMARY KEY (cod_funcion);
+
+
+--
+-- TOC entry 3234 (class 2606 OID 50958)
+-- Name: horario_sala horario_sala_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.horario_sala
+    ADD CONSTRAINT horario_sala_pkey PRIMARY KEY (codigo);
+
+
+--
+-- TOC entry 3220 (class 2606 OID 22712)
+-- Name: pelicula pelicula_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pelicula
+    ADD CONSTRAINT pelicula_pkey PRIMARY KEY (cod_pelicula);
+
+
+--
+-- TOC entry 3236 (class 2606 OID 50968)
+-- Name: producto producto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.producto
+    ADD CONSTRAINT producto_pkey PRIMARY KEY (cod_producto);
+
+
+--
+-- TOC entry 3228 (class 2606 OID 22751)
+-- Name: sala sala_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.sala
+    ADD CONSTRAINT sala_pkey PRIMARY KEY (cod_sala);
+
+
+--
+-- TOC entry 3216 (class 2606 OID 22700)
+-- Name: tipo_pelicula tipo_pelicula_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tipo_pelicula
+    ADD CONSTRAINT tipo_pelicula_pkey PRIMARY KEY (cod_tipopeli);
+
+
+--
+-- TOC entry 3238 (class 2606 OID 50975)
+-- Name: venta_producto venta_producto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.venta_producto
+    ADD CONSTRAINT venta_producto_pkey PRIMARY KEY (cod_venta);
+
+
+--
+-- TOC entry 3249 (class 2606 OID 50959)
+-- Name: horario_sala cod_sala; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.horario_sala
+    ADD CONSTRAINT cod_sala FOREIGN KEY (cod_sala) REFERENCES public.sala(cod_sala);
+
+
+--
+-- TOC entry 3248 (class 2606 OID 22784)
+-- Name: entrada fk_caje; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.entrada
+    ADD CONSTRAINT fk_caje FOREIGN KEY (cod_cajero) REFERENCES public.empleado(cod_empleado);
+
+
+--
+-- TOC entry 3242 (class 2606 OID 22718)
+-- Name: pelicula fk_cal; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pelicula
+    ADD CONSTRAINT fk_cal FOREIGN KEY (cod_calific) REFERENCES public.calificacion(cod_calific);
+
+
+--
+-- TOC entry 3243 (class 2606 OID 22742)
+-- Name: empleado fk_cargo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.empleado
+    ADD CONSTRAINT fk_cargo FOREIGN KEY (cod_cargo) REFERENCES public.cargo(cod_cargo);
+
+
+--
+-- TOC entry 3247 (class 2606 OID 22779)
+-- Name: entrada fk_cli; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.entrada
+    ADD CONSTRAINT fk_cli FOREIGN KEY (cod_cliente) REFERENCES public.cliente(cod_cliente);
+
+
+--
+-- TOC entry 3250 (class 2606 OID 50976)
+-- Name: venta_producto fk_comprador; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.venta_producto
+    ADD CONSTRAINT fk_comprador FOREIGN KEY (cod_cliente) REFERENCES public.cliente(cod_cliente) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 3246 (class 2606 OID 22774)
+-- Name: entrada fk_fun; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.entrada
+    ADD CONSTRAINT fk_fun FOREIGN KEY (cod_funcion) REFERENCES public.funcion(cod_funcion);
+
+
+--
+-- TOC entry 3244 (class 2606 OID 22758)
+-- Name: funcion fk_peli; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.funcion
+    ADD CONSTRAINT fk_peli FOREIGN KEY (cod_pelicula) REFERENCES public.pelicula(cod_pelicula);
+
+
+--
+-- TOC entry 3251 (class 2606 OID 50981)
+-- Name: venta_producto fk_producto; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.venta_producto
+    ADD CONSTRAINT fk_producto FOREIGN KEY (cod_producto) REFERENCES public.producto(cod_producto) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 3245 (class 2606 OID 22763)
+-- Name: funcion fk_sala; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.funcion
+    ADD CONSTRAINT fk_sala FOREIGN KEY (cod_sala) REFERENCES public.sala(cod_sala);
+
+
+--
+-- TOC entry 3241 (class 2606 OID 22713)
+-- Name: pelicula fk_tp; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pelicula
+    ADD CONSTRAINT fk_tp FOREIGN KEY (cod_tipopeli) REFERENCES public.tipo_pelicula(cod_tipopeli);
+
+
+--
+-- TOC entry 3252 (class 2606 OID 50986)
+-- Name: venta_producto fk_vendedor; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.venta_producto
+    ADD CONSTRAINT fk_vendedor FOREIGN KEY (cod_vendedor) REFERENCES public.empleado(cod_empleado) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 3253 (class 2606 OID 51002)
+-- Name: reserva reserva_cod_horario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reserva
+    ADD CONSTRAINT reserva_cod_horario_fkey FOREIGN KEY (cod_horario) REFERENCES public.horario_sala(codigo) NOT VALID;
+
+
+-- Completed on 2022-07-26 00:03:48
+
+--
+-- PostgreSQL database dump complete
+--
+

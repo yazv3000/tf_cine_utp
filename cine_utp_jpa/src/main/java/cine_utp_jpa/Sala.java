@@ -2,6 +2,7 @@ package cine_utp_jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 
 /**
@@ -18,6 +19,8 @@ public class Sala implements Serializable {
 	private Integer codSala;
 
 	private Integer capacidad;
+
+	private BigDecimal precio;
 
 	public Sala() {
 	}
@@ -36,6 +39,14 @@ public class Sala implements Serializable {
 
 	public void setCapacidad(Integer capacidad) {
 		this.capacidad = capacidad;
+	}
+
+	public BigDecimal getPrecio() {
+		return this.precio;
+	}
+
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
 	}
 
 }

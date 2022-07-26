@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</h:head>
+<h:body>
+	<br/>
+	<br/>
+	<h:form>
+		<b:container layout="fluid">
+			<b:panel icon-spin="true" icon="cd" title="Productos - Snack" look="primary" collapsible="false">
+				<b:row>
+				
+					<b:column span="12">
+						<b:panelGrid columns="3">
+							<c:forEach items="#{beanProducto.listado}" var="p">
+								<b:panel icon-spin="true" icon="cd" title="Productos - Snack" look="primary" collapsible="false">
+									<h:graphicImage value="/img/combo.PNG" width="150" style="margin-left: 80px;"  />
+									<b:panelGrid columns="2">
+										<h:outputText value="Nombre: " ></h:outputText>
+										<h:outputText value="#{p.nombre}" ></h:outputText>
+										<h:outputText value="Tipo: " ></h:outputText>
+										<h:outputText value="#{p.tipo}" ></h:outputText>
+										<h:outputText value="Precio: " ></h:outputText>
+										<h:outputText value="#{p.precio}" ></h:outputText><br/><br/>
+										<b:commandButton update="@form" actionListener="#{beanProducto.accionAgregarProducto(p)}" iconAwesome="fa-save" value="Agregar"  look="success">
+										</b:commandButton>
+									</b:panelGrid>
+									
+								</b:panel>
+							
+							</c:forEach>
+						</b:panelGrid>
+						
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="12">
+						<b:panel icon-spin="true" icon="cd" title="Productos Seleccionados" look="primary" collapsible="false">
+							<b:dataTable value="#{beanProducto.carrito}" var="p">
+								<b:dataTableColumn value="#{p.codProducto}" label="Código"/>
+								<b:dataTableColumn value="#{p.nombre}" label="Nombre"/>
+								<b:dataTableColumn value="#{p.tipo}" label="Tipo"/>
+								<b:dataTableColumn value="#{p.precio}" label="Precio"/>
+								<b:dataTableColumn>
+									<b:commandButton update="@form" actionListener="#{beanProducto.accionEliminarProducto(p)}" iconAwesome="fa-save" value="Eliminar"  look="success"/>
+								</b:dataTableColumn>
+							</b:dataTable>
+							<b:panelGrid columns="3">
+								<h:outputText value="Total " ></h:outputText>
+								<h:outputText value="#{beanProducto.totalCarrito}" ></h:outputText>
+							</b:panelGrid>
+							
+						</b:panel>
+					</b:column>		
+				</b:row>
+			</b:panel>
+		</b:container>
+	</h:form>
+</h:body>
+</html>

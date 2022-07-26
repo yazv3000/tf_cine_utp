@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import cine_utp_jpa.HorarioSala;
+import cine_utp_jpa.Reserva;
 import cine_utp_jpa.Sala;
 import pe.edu.universidad.dto.DtoSi;
 
@@ -41,6 +42,11 @@ public class EJBGesionSala {
 		return lst;
 	}
 	
+	public void reservaDeSala(Reserva r ) {
+		System.out.println("Nombre: " + r.getNombres());
+		System.out.println("Codigo del Horario---: " + r.getCodHorario());
+		//em.persist(r);
+	}
 	
 
 }

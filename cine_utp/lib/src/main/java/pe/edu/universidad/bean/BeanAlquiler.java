@@ -14,6 +14,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
 import cine_utp_jpa.HorarioSala;
+import cine_utp_jpa.Reserva;
 import cine_utp_jpa.Sala;
 import pe.edu.universidad.ejb.EJBGesionSala;
 
@@ -26,10 +27,14 @@ public class BeanAlquiler implements Serializable {
 	private EJBGesionSala ejb;
 	private List<Sala> lstSalas;
 	private Date fechaDisponible;
-	private Time hora; //privicional
+	private Time hora; 
+	private Reserva reserva = null;
+	private String horaString;
+	private List<SelectItem> lst;
 	
 	public BeanAlquiler() {
 		fechaDisponible = new Date();
+		reserva = new Reserva();
 	}
 	
 	@PostConstruct
@@ -38,21 +43,25 @@ public class BeanAlquiler implements Serializable {
 	}
 
 	public List<SelectItem> FiltrarHorario(Sala s) {
-		
+		System.out.println("Codigo del horario iniciar: "+reserva.getCodHorario());
 		List<HorarioSala> horario = ejb.listadoDeHorasPorFecha();
-		List<SelectItem> lst = new ArrayList<SelectItem>();
+		lst = new ArrayList<SelectItem>();
 		for (HorarioSala horarioSala : horario) {
 			if (horarioSala.getFecha().equals(fechaDisponible) && horarioSala.getCodSala() ==  s.getCodSala()) {
 				SelectItem si = new SelectItem();
-				si.setValue(horarioSala.getCodigo());
+				
+				System.out.println("Codigo Sala: "+ s.getCodSala()+" Codigodel Horario:" + horarioSala.getCodigo() );
 				si.setLabel(horarioSala.getHora().getHours()<10?"0"+horarioSala.getHora().getHours()+":00":horarioSala.getHora().getHours()+":00");
+				si.setValue(horarioSala.getCodigo());
 				lst.add(si);
-//				System.out.println(horarioSala.getHora().getHours());
-//				System.out.println(horarioSala.getFecha());
-//				System.out.println(fechaDisponible);
 			}
 		}
+
 		return lst;
+	}
+	
+	public void insertarReserva() {
+		ejb.reservaDeSala(reserva);
 	}
 	
 	public String actulizarPagina() {
@@ -80,6 +89,22 @@ public class BeanAlquiler implements Serializable {
 
 	public void setHora(Time hora) {
 		this.hora = hora;
+	}
+
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+
+	public List<SelectItem> getLst() {
+		return lst;
+	}
+
+	public void setLst(List<SelectItem> lst) {
+		this.lst = lst;
 	}
 	
 	

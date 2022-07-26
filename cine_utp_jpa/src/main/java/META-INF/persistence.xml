@@ -9,8 +9,11 @@
 		<class>cine_utp_jpa.Entrada</class>
 		<class>cine_utp_jpa.Funcion</class>
 		<class>cine_utp_jpa.Pelicula</class>
-		<class>cine_utp_jpa.Sala</class>
 		<class>cine_utp_jpa.TipoPelicula</class>
 		<class>cine_utp_jpa.HorarioSala</class>
+		<class>cine_utp_jpa.Producto</class>
+		<class>cine_utp_jpa.VentaProducto</class>
+		<class>cine_utp_jpa.Reserva</class>
+		<class>cine_utp_jpa.Sala</class>
 	</persistence-unit>
 </persistence>
