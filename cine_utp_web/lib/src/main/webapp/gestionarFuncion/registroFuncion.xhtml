@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<style>
+	.Bimage {
+		background-image:
+			url("https://es-mb.theepochtimes.com/assets/uploads/2018/06/GettyImages-961620930-700x420.jpg");
+	}
+	</style>
+	<title>Nueva Función</title>
+</h:head>
+
+<h:body styleClass="Bimage">
+
+	<!--  Navbar -->
+	<b:navBar brand="Cine - UTP" brandHref="#" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Peliculas" href="pelicula.xhtml"></b:navLink>
+			<b:navLink value="Funciones" href="funcion.xhtml"></b:navLink>
+			<b:navLink value="Nueva Función" href="#"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+
+	<br />
+	
+	<!--  Contenedor Principal -->
+	<b:container layout="fluid">
+	
+		<b:panel icon-spin="true" icon="cd" title="Nueva Función"
+			look="primary">
+			<h:form>
+				<h:panelGrid columns="2">
+				
+					<!--  PELÍCULA -->
+					<h:outputText value="Película: "></h:outputText>
+					<b:selectOneMenu value="#{beanFuncionNueva.dtoFuncionNueva.codPelicula}"	select2="true">
+						<f:selectItems value="#{beanFuncionNueva.siPeliculas}" />
+					</b:selectOneMenu>
+					
+					<!--  SALA -->
+					<h:outputText value="Sala: "></h:outputText>
+					<b:selectOneMenu value="#{beanFuncionNueva.dtoFuncionNueva.codSala}"		select2="true">
+						<f:selectItems value="#{beanFuncionNueva.siSalas}" />
+					</b:selectOneMenu>
+					
+					<h:outputText value="Fecha y hora: "></h:outputText>
+					<b:dateTimePicker format="MM/DD/YYYY HH:mm" locale="en"		value="#{beanFuncionNueva.dtoFuncionNueva.fecha}" />
+					
+					<br />
+					<!-- 	<b:dateTimePicker label="Hora de la Función" id="fecha" value="#{beanReserva.fecha}" mode="inline" format="HH:mm"></b:dateTimePicker> -->
+					<h:outputText></h:outputText>
+					
+					<h:outputText value="Precio: "></h:outputText>
+					<b:inputText labelStyle="width:50px;" 
+						value="#{beanFuncionNueva.dtoFuncionNueva.precio}">
+						<f:facet name="prepend">
+							<h:outputText value="S/." />
+						</f:facet>
+					</b:inputText>
+					
+					<b:commandButton iconAwesome="fa-save" value="Guardar"
+						action="#{beanFuncionNueva.guardarFuncion}" look="success">
+					</b:commandButton>
+					
+				</h:panelGrid>
+			</h:form>
+		</b:panel>
+	</b:container>
+</h:body>
+</html>

@@ -146,6 +146,16 @@ CREATE TABLE public.sala
     capacidad integer NOT NULL,
     PRIMARY KEY (cod_sala)
 );
+INSERT INTO public.sala
+	VALUES 
+	(1, 30),
+	(2, 40),
+	(3, 50),
+	(4, 25),
+	(5, 20),
+	(6, 60),
+	(7, 45),
+	(8, 35);
 ------------------------------------------------------------
 CREATE TABLE public.funcion
 (
@@ -178,22 +188,6 @@ CREATE TABLE public.entrada
 	CONSTRAINT fk_caje
 		FOREIGN KEY (cod_cajero) REFERENCES public.empleado(cod_empleado)
 );
-------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS public.venta_producto
-(
-    cod_venta integer NOT NULL,
-    cod_cliente integer NOT NULL,
-	cod_vendedor integer NOT NULL,
-	cod_producto integer NOT NULL,
-    fecha_venta date NOT NULL,
-	cantidad integer NOT NULL,
-	monto_total numeric NOT NULL,
-    PRIMARY KEY (cod_venta),
-    CONSTRAINT fk_comprador FOREIGN KEY (cod_cliente) REFERENCES public.cliente(cod_cliente) ON UPDATE CASCADE ON DELETE RESTRICT,
-    CONSTRAINT fk_producto FOREIGN KEY (cod_producto) REFERENCES public.producto(cod_producto) ON UPDATE CASCADE ON DELETE RESTRICT,
-	CONSTRAINT fk_vendedor FOREIGN KEY (cod_vendedor) REFERENCES public.empleado(cod_empleado) ON UPDATE CASCADE ON DELETE RESTRICT
-);
 -------------------------------------------
 CREATE TABLE IF NOT EXISTS producto
 (
@@ -215,6 +209,21 @@ INSERT INTO public.producto
 	(8, '1 Canchita Grande + 2 Bebidas Medianas', 30, 'combo'),
 	(9, '1 Canchita Grande + 2 Bebidas Pequeñas', 25, 'combo'),
 	(10, '1 Canchita Gigante + 1 Bebidas Medianas', 20, 'combo');
+------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS public.venta_producto
+(
+    cod_venta integer NOT NULL,
+    cod_cliente integer NOT NULL,
+	cod_vendedor integer NOT NULL,
+	cod_producto integer NOT NULL,
+    fecha_venta date NOT NULL,
+	cantidad integer NOT NULL,
+	monto_total numeric NOT NULL,
+    PRIMARY KEY (cod_venta),
+    CONSTRAINT fk_comprador FOREIGN KEY (cod_cliente) REFERENCES public.cliente(cod_cliente) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_producto FOREIGN KEY (cod_producto) REFERENCES public.producto(cod_producto) ON UPDATE CASCADE ON DELETE RESTRICT,
+	CONSTRAINT fk_vendedor FOREIGN KEY (cod_vendedor) REFERENCES public.empleado(cod_empleado) ON UPDATE CASCADE ON DELETE RESTRICT
+);
 ------------------------------------------------
 CREATE TABLE public.alquiler_sala
 (
@@ -224,12 +233,33 @@ CREATE TABLE public.alquiler_sala
 	hora_inicio time NOT NULL,
 	precio numeric NOT NULL,
 	PRIMARY KEY (cod_alquiler),
-	CONSTRAINT fk_sala2
-		FOREIGN KEY (cod_sala) REFERENCES public.sala(cod_sala)
+	CONSTRAINT fk_sala2 FOREIGN KEY (cod_sala) REFERENCES public.sala(cod_sala)
+);
+------------------------------------------------
+CREATE TABLE IF NOT EXISTS public.horario_sala
+(
+    codigo integer NOT NULL,
+    cod_sala integer,
+    fecha date,
+    hora time without time zone,
+    precio numeric,
+    estado character varying(20),
+    CONSTRAINT horario_sala_pkey PRIMARY KEY (codigo),
+    CONSTRAINT cod_sala FOREIGN KEY (cod_sala) REFERENCES public.sala (cod_sala)
 );
 -----SECUENCIADORES
-CREATE SEQUENCE IF NOT EXISTS public.seq_venta INCREMENT 1 START 1000;
-CREATE SEQUENCE IF NOT EXISTS public.seq_producto INCREMENT 1 START 100;
-CREATE SEQUENCE public.seq_tickets    INCREMENT 1     START 1000;
-CREATE SEQUENCE public.seq_funciones     INCREMENT 1    START 100;
-CREATE SEQUENCE public.seq_clientes    INCREMENT 1    START 300;
+CREATE SEQUENCE IF NOT EXISTS public.seq_ventas
+	INCREMENT 1 
+	START 1000;
+CREATE SEQUENCE IF NOT EXISTS public.seq_productos
+	INCREMENT 1 
+	START 100;
+CREATE SEQUENCE IF NOT EXISTS public.seq_tickets    
+	INCREMENT 1     
+	START 1000;
+CREATE SEQUENCE IF NOT EXISTS public.seq_funciones    
+	INCREMENT 1    
+	START 100;
+CREATE SEQUENCE IF NOT EXISTS public.seq_clientes    
+	INCREMENT 1    
+	START 300;

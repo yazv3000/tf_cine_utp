@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<style>
+.Bimage {
+	background-image:
+		url("https://es-mb.theepochtimes.com/assets/uploads/2018/06/GettyImages-961620930-700x420.jpg");
+}
+</style>
+	<title>Entradas Vendidas</title>
+</h:head>
+
+<h:body styleClass="Bimage">
+
+	<!--  Navbar -->
+	<b:navBar brand="Cine - UTP" brandHref="#" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Compra de Tickets" href="#{request.contextPath}/comprarTicket/registrarCliente"></b:navLink>
+			<b:navLink value="Compra de Productos" href="#{request.contextPath}/comprarProductos/clienteProducto.xhtml"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+
+	<br /><br />
+	<!--  Contenedor Principal -->
+	<b:container layout="fluid">
+
+		<b:panel icon="ticket" title="Entradas Vendidas"
+			look="info" collapsible="false">
+
+			<!--  Tabla de Clientes -->
+			<b:column span="10" offset="1">
+				<h:panelGrid>
+					<b:dataTable id="dataEntradas" value="#{beanEntrada.lstTickets}"
+						var="t" rendered="#{not empty beanEntrada.lstTickets}">
+						<b:dataTableColumn>
+							<f:facet name="header">TICKET</f:facet>
+							<h:outputText value="#{t.codTicket}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">FUNCIÓN</f:facet>
+							<h:outputText value="#{t.codFuncion}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">PELÍCULA</f:facet>
+							<h:outputText value="#{t.nombrePelicula}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">SALA</f:facet>
+							<h:outputText value="#{t.sala}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">ASIENTO</f:facet>
+							<h:outputText value="#{t.asiento}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">FECHA FUNCIÓN</f:facet>
+							<h:outputText value="#{t.fechaFuncion}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">FECHA COMPRA</f:facet>
+							<h:outputText value="#{t.fechaCompra}"></h:outputText>
+						</b:dataTableColumn>
+
+					<b:dataTableColumn>
+							<f:facet name="header">CLIENTE</f:facet>
+							<h:outputText value="#{t.nombreCliente}"></h:outputText>
+						</b:dataTableColumn>
+
+					</b:dataTable>
+				</h:panelGrid>
+			</b:column>
+		</b:panel>
+		</b:container>
+</h:body>
+</html>

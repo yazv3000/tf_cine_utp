@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<style>
+	.Bimage {
+	background-image:
+		url("https://es-mb.theepochtimes.com/assets/uploads/2018/06/GettyImages-961620930-700x420.jpg");
+}
+</style>
+	<title>Compra Producto</title>
+</h:head>
+
+<h:body styleClass="Bimage">
+
+	<!--  Navbar -->
+	<b:navBar brand="Cine - UTP" brandHref="#" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Compra de Tickets" href="#{request.contextPath}/comprarTicket/registrarCliente"></b:navLink>
+			<b:navLink value="Compra de Productos" href="#{request.contextPath}/comprarProductos/clienteProducto.xhtml"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+	<br />
+
+	<!--  Contenedor Principal -->
+	<b:container layout="fluid">
+
+		<b:panel icon="ticket" title="Compra de Productos" look="default"
+			collapsible="false">
+
+			<b:column span="8" offset="4">
+				<!--  Formulario Resumen -->
+				<h:form>
+					<h1><b:label value="CLIENTE" severity="danger"/></h1>
+
+					<h:panelGrid columns="2">
+
+						<c:set var="c" value="#{beanCompraProducto.cliente}" scope="request" />
+
+						<label>Código de Cliente: </label>
+						<h:outputText value="#{c.codigo}"></h:outputText>
+
+						<label>Nombre completo: </label>
+						<h:outputText value="#{c.nombreCompleto}"></h:outputText>
+
+						<label>DNI: </label>
+						<h:outputText value="#{c.dni}"></h:outputText>
+
+						<label>Email: </label>
+						<h:outputText value="#{c.email}"></h:outputText>
+
+					</h:panelGrid>
+
+					<h1><b:label value="PRODUCTO" severity="primary"/></h1>
+
+					<c:set var="p" value="#{beanCompraProducto.producto}" scope="request" />
+
+					<h:panelGrid columns="2">
+
+						<label>Código de Producto: </label>
+						<h:outputText value="#{p.codProducto}"></h:outputText>
+
+						<label>Nombre: </label>
+						<h:outputText value="#{p.nombre}"></h:outputText>
+
+						<label>Tipo: </label>
+						<h:outputText value="#{p.tipo}"></h:outputText>
+
+						<label>Precio: </label>
+						<h:outputText value="S/.#{p.precio}"></h:outputText>
+
+						<label>Cantidad: </label>
+						<h:outputText value="#{beanCompraProducto.cantidad}"></h:outputText>
+						
+						<label>Total: </label>
+						<h:outputText value="S/.#{beanCompraProducto.montoTotal}"></h:outputText>
+
+					</h:panelGrid>
+
+					<b:commandButton iconAwesome="fa-save" value="Confirmar"
+						action="#{beanCompraProducto.confirmarCompra}" look="warning">
+					</b:commandButton>
+
+				</h:form>
+				</b:column>
+		</b:panel>
+	</b:container>
+</h:body>
+</html>

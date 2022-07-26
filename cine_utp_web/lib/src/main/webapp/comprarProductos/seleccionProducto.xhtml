@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<style>
+.Bimage {
+	background-image:
+		url("https://es-mb.theepochtimes.com/assets/uploads/2018/06/GettyImages-961620930-700x420.jpg");
+}
+</style>
+	<title>Productos</title>
+</h:head>
+
+<h:body styleClass="Bimage">
+
+	<!--  Navbar -->
+	<b:navBar brand="Cine - UTP" brandHref="#" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Compra de Tickets" href="#{request.contextPath}/comprarTicket/registrarCliente"></b:navLink>
+			<b:navLink value="Compra de Productos" href="#{request.contextPath}/comprarProductos/clienteProducto.xhtml"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+
+	<br /><br />
+
+	<!--  Contenedor Principal -->
+	<b:container layout="fluid">
+		
+		<b:panel icon="apple" title="Compra de Productos"
+			look="primary" collapsible="false">
+
+			<!--  Tabla de Funciones -->
+			<b:column span="8" offset="2">
+
+				<h:panelGrid>
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputText  value="CANTIDAD:"></h:outputText>
+						<b:inputText span="8" value="#{beanSeleccionProducto.cantidad}" mask="numeric" class="input-sm"></b:inputText>
+					</h:panelGrid>
+				
+					<b:dataTable id="dataFunciones"
+						value="#{beanSeleccionProducto.lstProducto}" var="p"
+						rendered="#{not empty beanSeleccionProducto.lstProducto}">
+						<b:dataTableColumn>
+							<f:facet name="header">CÓDIGO</f:facet>
+							<h:outputText value="#{p.codProducto}"></h:outputText>
+						</b:dataTableColumn>
+
+
+						<b:dataTableColumn>
+							<f:facet name="header">NOMBRE</f:facet>
+							<h:outputText value="#{p.nombre}"></h:outputText>
+						</b:dataTableColumn>
+
+
+						<b:dataTableColumn>
+							<f:facet name="header">TIPO</f:facet>
+							<h:outputText value="#{p.tipo}"></h:outputText>
+						</b:dataTableColumn>
+
+
+						<b:dataTableColumn>
+							<f:facet name="header">PRECIO UNITARIO(S/.)</f:facet>
+							<h:outputText value="#{p.precio}"></h:outputText>
+						</b:dataTableColumn>
+
+						<b:dataTableColumn>
+							<f:facet name="header">ACCIÓN</f:facet>
+							
+								<b:commandButton
+									action="#{beanSeleccionProducto.seleccionarProducto}"
+									value="Seleccionar" look="primary">
+									<f:param name="productoid" value="#{p.codProducto}"></f:param>
+									<f:param name="cant" value="#{beanSeleccionProducto.cantidad}"></f:param>
+								</b:commandButton>
+						</b:dataTableColumn>
+					
+					</b:dataTable>
+					
+					</h:form>
+					<h:outputText value="No hay productos registradas"
+						rendered="#{empty beanSeleccionProducto.lstProducto}"></h:outputText>
+
+				</h:panelGrid>
+			</b:column>
+		</b:panel>
+	</b:container>
+</h:body>
+
+</html>

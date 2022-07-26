@@ -2,6 +2,7 @@ package cine_utp_jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -40,6 +41,10 @@ public class Cliente implements Serializable {
 
 	@Column(name="nom_cl")
 	private String nomCl;
+
+	//bi-directional many-to-one association to VentaProducto
+	@OneToMany(mappedBy="cliente")
+	private List<VentaProducto> ventaProductos;
 
 	public Cliente() {
 	}
@@ -98,6 +103,28 @@ public class Cliente implements Serializable {
 
 	public void setNomCl(String nomCl) {
 		this.nomCl = nomCl;
+	}
+
+	public List<VentaProducto> getVentaProductos() {
+		return this.ventaProductos;
+	}
+
+	public void setVentaProductos(List<VentaProducto> ventaProductos) {
+		this.ventaProductos = ventaProductos;
+	}
+
+	public VentaProducto addVentaProducto(VentaProducto ventaProducto) {
+		getVentaProductos().add(ventaProducto);
+		ventaProducto.setCliente(this);
+
+		return ventaProducto;
+	}
+
+	public VentaProducto removeVentaProducto(VentaProducto ventaProducto) {
+		getVentaProductos().remove(ventaProducto);
+		ventaProducto.setCliente(null);
+
+		return ventaProducto;
 	}
 
 }
