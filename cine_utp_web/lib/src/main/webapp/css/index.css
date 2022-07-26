@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+#links {
+	margin: 5px;
+	background-color: var(#16110aa6);
+    border-radius: 20px;
+    color: black;
+    padding: 1px 20px 20px 20px;
+    text-align: -webkit-center !important;
+    text-align-last: center;
+}
+.boton{
+	background-color: #ffc107;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.boton:hover{
+	background: var(--primario);
+    border: 1px solid #ffc107;
+    color: #ffc107;
+    cursor: pointer;
+}
+.margin{
+    margin-top: 30px;
+}

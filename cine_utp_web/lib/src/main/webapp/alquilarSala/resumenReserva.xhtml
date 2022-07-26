@@ -16,6 +16,16 @@
 </h:head>
 
 <h:body styleClass="Bimage">
+	
+	<b:navBar brand="Cine - UTP" brandHref="#{request.contextPath}/index.jsp" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Crear Funcion" href="#{request.contextPath}/gestionarFuncion/registroFuncion.xhtml"></b:navLink>
+			<b:navLink value="Compra de Tickets" href="#{request.contextPath}/comprarTicket/registrarCliente.xhtml"></b:navLink>
+			<b:navLink value="Compra de Productos" href="#{request.contextPath}/comprarProductos/clienteProducto.xhtml"></b:navLink>
+			<b:navLink value="Alquiler de Sala" href="#{request.contextPath}/gestionarFuncion/clienteAlquiler.xhtml"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+	
 	<h:form>
 		<br />
 		<br />
