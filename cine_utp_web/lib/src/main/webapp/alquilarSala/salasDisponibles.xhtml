@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8"/>
+	<style>               
+        .Bimage{background-image:url("https://es-mb.theepochtimes.com/assets/uploads/2018/06/GettyImages-961620930-700x420.jpg"); }        
+     </style> 
+	<title>Alquiler de Salas para eventos</title>
+</h:head>
+
+<h:body styleClass="Bimage">
+	<h:form>
+	<br/><br/>
+	
+		<!--  Contenedor Principal -->
+		<b:container layout="fluid">
+		<b:panel icon-spin="true" icon="cd" title="Salas Disponibles" look="primary" >
+			
+			<b:row>
+				<b:column span="6" offset="3">
+						<b:dataTable value="#{beanSalasReserva.lstSalas}" var="s">
+								<b:dataTableColumn value="#{s.codSala}" label="Codigo"/>
+								<b:dataTableColumn value="#{s.capacidad}" label="Capacidad" />	
+								<b:dataTableColumn value="#{s.precio}" label="Precio (S/.)"/>
+								<b:dataTableColumn label="Acción">
+									<b:commandButton action="#{beanSalasReserva.siguientePagina}"  value="Seleccionar"  look="success">
+										<f:param name="salaId" value="#{s.codSala}"></f:param>
+									</b:commandButton>
+								</b:dataTableColumn>
+							</b:dataTable>
+					</b:column>
+			</b:row>
+			
+		</b:panel>
+		</b:container>
+	</h:form>
+</h:body>
+</html>

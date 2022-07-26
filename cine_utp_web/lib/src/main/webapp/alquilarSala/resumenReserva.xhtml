@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<style>
+.Bimage {
+	background-image:
+		url("https://es-mb.theepochtimes.com/assets/uploads/2018/06/GettyImages-961620930-700x420.jpg");
+}
+</style>
+	<title>Alquiler de Salas para eventos</title>
+</h:head>
+
+<h:body styleClass="Bimage">
+	<h:form>
+		<br />
+		<br />
+
+		<!--  Contenedor Principal -->
+		<b:container layout="fluid">
+			<b:panel icon-spin="true" icon="cd" title="Salas Disponibles"
+				look="primary">
+				<b:row>
+					<b:column span="6" offset="3">
+						<b:panel title="Datos del Registro" look="primary">
+							<b:panelGrid columns="2">
+								<h:outputText value="Nombre: "></h:outputText>
+								<h:outputText value="#{beanAlquilerSala.reserva.nombres}"></h:outputText>
+								<h:outputText value="Apellidos: "></h:outputText>
+								<h:outputText value="#{beanAlquilerSala.reserva.apellidos}"></h:outputText>
+								<h:outputText value="DNI: "></h:outputText>
+								<h:outputText value="#{beanAlquilerSala.reserva.dni}"></h:outputText>
+								<h:outputText value="Telefono: "></h:outputText>
+								<h:outputText value="#{beanAlquilerSala.reserva.telefono}"></h:outputText>
+								<h:outputText value="Correo"></h:outputText>
+								<h:outputText value="#{beanAlquilerSala.reserva.correo}"></h:outputText>
+								<h:outputText value="Fecha: "></h:outputText>
+								<h:outputText value="#{beanAlquilerSala.horario.fecha} "></h:outputText>
+								<h:outputText value="Hora "></h:outputText>
+								<h:outputText value="#{beanAlquilerSala.horario.hora} "></h:outputText>
+								<h:outputText value="Sala: "></h:outputText>
+								<h:outputText value="Sala #{beanAlquilerSala.codSala} "></h:outputText>
+								<h:outputText value="Capacidad "></h:outputText>
+								<h:outputText value="#{beanAlquilerSala.horario.sala.capacidad} "></h:outputText>
+								<h:outputText value="Precio "></h:outputText>
+								<h:outputText value="S/. #{beanAlquilerSala.horario.sala.precio}"></h:outputText>
+							</b:panelGrid>
+						</b:panel>
+					</b:column>
+				</b:row>
+			</b:panel>
+
+		</b:container>
+	</h:form>
+</h:body>
+</html>

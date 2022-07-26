@@ -48,9 +48,9 @@ public class EJBComprarProducto {
 	public EJBComprarProducto() { }
 	
 	@GET
-    @Produces(MediaType.APPLICATION_JSON)
     @Path("consultarProductosTodos")
-    public List<DtoProductoConsulta> consultarProductosTodos() {
+    @Produces(MediaType.APPLICATION_JSON)
+	public List<DtoProductoConsulta> consultarProductosTodos() {
     	
     	Query query = em.createNamedQuery("Producto.findAll");
     	List<Producto> lst = query.getResultList();
