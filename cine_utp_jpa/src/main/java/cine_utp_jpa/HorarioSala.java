@@ -13,7 +13,13 @@ import java.util.Date;
  */
 @Entity
 @Table(name="horario_sala")
-@NamedQuery(name="HorarioSala.findAll", query="SELECT h FROM HorarioSala h")
+
+
+
+@NamedQueries({ 
+	@NamedQuery(name="HorarioSala.findAll", query="SELECT h FROM HorarioSala h"),
+@NamedQuery(name="HorarioSala.filtrarFecha", query="SELECT h FROM HorarioSala h where h.fecha = :date")
+})
 public class HorarioSala implements Serializable {
 	private static final long serialVersionUID = 1L;
 

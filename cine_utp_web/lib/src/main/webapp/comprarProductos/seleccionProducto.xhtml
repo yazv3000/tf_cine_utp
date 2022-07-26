@@ -19,8 +19,8 @@
 	<!--  Navbar -->
 	<b:navBar brand="Cine - UTP" brandHref="#" inverse="true">
 		<b:navbarLinks>
-			<b:navLink value="Compra de Tickets" href="/comprarTicket/clienteTicket.xhtml"></b:navLink>
-			<b:navLink value="Compra de Productos" href="#"></b:navLink>
+			<b:navLink value="Compra de Tickets" href="#{request.contextPath}/comprarTicket/registrarCliente"></b:navLink>
+			<b:navLink value="Compra de Productos" href="#{request.contextPath}/comprarProductos/clienteProducto.xhtml"></b:navLink>
 		</b:navbarLinks>
 	</b:navBar>
 
@@ -28,7 +28,7 @@
 
 	<!--  Contenedor Principal -->
 	<b:container layout="fluid">
-
+		
 		<b:panel icon="apple" title="Compra de Productos"
 			look="primary" collapsible="false">
 
@@ -37,6 +37,11 @@
 
 				<h:panelGrid>
 				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputText  value="CANTIDAD:"></h:outputText>
+						<b:inputText span="8" value="#{beanSeleccionProducto.cantidad}" mask="numeric" class="input-sm"></b:inputText>
+					</h:panelGrid>
+				
 					<b:dataTable id="dataFunciones"
 						value="#{beanSeleccionProducto.lstProducto}" var="p"
 						rendered="#{not empty beanSeleccionProducto.lstProducto}">
@@ -62,12 +67,6 @@
 							<f:facet name="header">PRECIO UNITARIO(S/.)</f:facet>
 							<h:outputText value="#{p.precio}"></h:outputText>
 						</b:dataTableColumn>
-						
-						
-						<b:dataTableColumn>
-							<f:facet name="header">CANTIDAD (S/.)</f:facet>
-							<b:inputText value="#{beanSeleccionProducto.cantidad}"></b:inputText>
-						</b:dataTableColumn>
 
 						<b:dataTableColumn>
 							<f:facet name="header">ACCIÓN</f:facet>
@@ -81,6 +80,7 @@
 						</b:dataTableColumn>
 					
 					</b:dataTable>
+					
 					</h:form>
 					<h:outputText value="No hay productos registradas"
 						rendered="#{empty beanSeleccionProducto.lstProducto}"></h:outputText>

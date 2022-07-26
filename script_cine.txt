@@ -1,3 +1,4 @@
+-- 26/07/22
 /***********************************************************
     SCRIPT : CREACIÓN DE LA BASE DE DATOS CON POSTGRESQL
 ************************************************************/
@@ -144,18 +145,19 @@ CREATE TABLE public.sala
 (
     cod_sala integer NOT NULL,
     capacidad integer NOT NULL,
+    precio numeric NOT NULL,
     PRIMARY KEY (cod_sala)
 );
 INSERT INTO public.sala
 	VALUES 
-	(1, 30),
-	(2, 40),
-	(3, 50),
-	(4, 25),
-	(5, 20),
-	(6, 60),
-	(7, 45),
-	(8, 35);
+	(1, 30, 300),
+	(2, 40, 270),
+	(3, 50, 350),
+	(4, 25, 260),
+	(5, 20, 400),
+	(6, 60, 300),
+	(7, 45, 350),
+	(8, 35, 270);
 ------------------------------------------------------------
 CREATE TABLE public.funcion
 (
@@ -225,17 +227,6 @@ CREATE TABLE IF NOT EXISTS public.venta_producto
 	CONSTRAINT fk_vendedor FOREIGN KEY (cod_vendedor) REFERENCES public.empleado(cod_empleado) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 ------------------------------------------------
-CREATE TABLE public.alquiler_sala
-(
-	cod_alquiler integer NOT NULL,
-	cod_sala integer NOT NULL,
-	fecha_evento date NOT NULL DEFAULT CURRENT_DATE,
-	hora_inicio time NOT NULL,
-	precio numeric NOT NULL,
-	PRIMARY KEY (cod_alquiler),
-	CONSTRAINT fk_sala2 FOREIGN KEY (cod_sala) REFERENCES public.sala(cod_sala)
-);
-------------------------------------------------
 CREATE TABLE IF NOT EXISTS public.horario_sala
 (
     codigo integer NOT NULL,
@@ -244,9 +235,32 @@ CREATE TABLE IF NOT EXISTS public.horario_sala
     hora time without time zone,
     precio numeric,
     estado character varying(20),
-    CONSTRAINT horario_sala_pkey PRIMARY KEY (codigo),
+    CONSTRAINT pk_hsala PRIMARY KEY (codigo),
     CONSTRAINT cod_sala FOREIGN KEY (cod_sala) REFERENCES public.sala (cod_sala)
 );
+
+INSERT INTO public.horario_sala 
+VALUES 
+(1, 1, '2022-07-28', '07:00:00', 300, 'Disponible'),
+(2, 1, '2022-07-28', '08:00:00', 300, 'Disponible'),
+(3, 1, '2022-07-28', '09:00:00', 300, 'Disponible'),
+(4, 1, '2022-07-28', '10:00:00', 300, 'Disponible'),
+(5, 2, '2022-07-28', '07:00:00', 350, 'Disponible'),
+(6, 4, '2022-07-28', '11:00:00', 300, 'Disponible'),
+(7, 4, '2022-07-28', '12:00:00', 350, 'Disponible');
+------------------------------------------------
+CREATE TABLE IF NOT EXISTS public.reserva (
+    cod_reserva integer NOT NULL,
+    cod_horario integer NOT NULL,
+    nombres character varying(100),
+    apellidos character varying(100),
+    dni character varying(10),
+    telefono character varying(10),
+    correo character varying(100),
+	CONSTRAINT pk_reserva PRIMARY KEY (cod_reserva),
+    CONSTRAINT cod_horario FOREIGN KEY (cod_horario) REFERENCES public.horario_sala (codigo)
+);
+------------------------------------------------
 -----SECUENCIADORES
 CREATE SEQUENCE IF NOT EXISTS public.seq_ventas
 	INCREMENT 1 
@@ -263,3 +277,6 @@ CREATE SEQUENCE IF NOT EXISTS public.seq_funciones
 CREATE SEQUENCE IF NOT EXISTS public.seq_clientes    
 	INCREMENT 1    
 	START 300;
+CREATE SEQUENCE public.seq_reserva
+    INCREMENT 1
+	START 1;
