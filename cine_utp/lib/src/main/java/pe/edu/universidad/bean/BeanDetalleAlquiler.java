@@ -22,7 +22,7 @@ import pe.edu.universidad.ejb.EJBGesionSala;
 
 @Named
 @SessionScoped
-public class BeanAlquiler implements Serializable {
+public class BeanDetalleAlquiler implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@EJB
@@ -35,7 +35,7 @@ public class BeanAlquiler implements Serializable {
 	//private List<SelectItem> lst;
 	private Map<Integer, List<SelectItem>> horarioMap;
 	
-	public BeanAlquiler() {
+	public BeanDetalleAlquiler() {
 		fechaDisponible = new Date();
 		reserva = new Reserva();
 	}

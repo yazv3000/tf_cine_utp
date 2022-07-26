@@ -1,10 +1,13 @@
 package pe.edu.universidad.ejb;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -42,9 +45,30 @@ public class EJBGesionSala {
 		return lst;
 	}
 	
+	public Map<Integer, List<SelectItem>> todosHorariosMap(){
+		List<Sala> salas = obtenerDatosSala();
+		List<HorarioSala> horarios =listadoDeHorasPorFecha();
+		Map<Integer, List<SelectItem>> horarioMap = new LinkedHashMap<Integer, List<SelectItem>>();
+		
+		for (int i = 0; i < salas.size(); i++) {
+			List<SelectItem> items = new ArrayList<SelectItem>();
+			
+			for (int j = 0; j < horarios.size(); j++) {
+				if (salas.get(i).getCodSala() == horarios.get(j).getCodSala()) {
+					SelectItem item = new SelectItem();
+					item.setLabel(horarios.get(j).getHora().getHours()<10?"0"+horarios.get(j).getHora().getHours()+":00":horarios.get(j).getHora().getHours()+":00");
+					item.setValue(horarios.get(i).getCodigo());
+					items.add(item);
+				}
+			}
+			horarioMap.put(salas.get(i).getCodSala(), items);
+		}
+		return horarioMap;
+	}
+	
 	public void reservaDeSala(Reserva r ) {
-		System.out.println("Nombre: " + r.getNombres());
-		System.out.println("Codigo del Horario---: " + r.getCodHorario());
+		//System.out.println("Nombre: " + r.getNombres());
+		//System.out.println("Codigo del Horario---: " + r.getCodHorario());
 		//em.persist(r);
 	}
 	
